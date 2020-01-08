@@ -40,3 +40,12 @@ class LoginView(APIView):
         token = jwt.encode({'sub': user.id}, settings.SECRET_KEY, algorithm='HS256')
 
         return Response({'token': token, 'message': f'Welcome back {user.username}'})
+
+class ProfileView(APIView): # one route GET '/profile'
+
+    permission_classes = (IsAuthenticated, ) # profile route requires a user to be signed in, otherwise we would not know which users profile to get. We work out who they are from the token send with the request for the profile
+
+    def get(self, request): # get method to return the user object
+        user = User.objects.get(pk=request.user.id) # find the user by their id(primary key, pk). We get the user from the request.user.id. This is set in 'jwt/authentication.py' and is worked out by decoding the jwt token send with the request
+        serialized_user = UserSerializer(user) # running that found user through the serialiser to turn it into JSON
+        return Response(serialized_user.data)

@@ -10,7 +10,7 @@ Artist = apps.get_model('artists', 'Artist')
 class ArtistSerializer(serializers.ModelSerializer):
     class Meta:
         model = Artist
-        fields = ('id', 'spotifyId', 'name', 'owner')
+        fields = ('spotifyId', 'name', 'owner')
 
 class UserSerializer(serializers.ModelSerializer):
 
