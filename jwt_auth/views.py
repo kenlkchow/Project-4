@@ -2,7 +2,7 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.exceptions import PermissionDenied
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, AllowAny
 from django.contrib.auth import get_user_model
 from django.conf import settings
 from .serializers import UserSerializer
@@ -28,7 +28,6 @@ class LoginView(APIView):
             raise PermissionDenied({'message': 'Invalid Credentilais'})
 
     def post(self, request):
-
         username = request.data.get('username')
         password = request.data.get('password')
 

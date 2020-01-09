@@ -1,11 +1,19 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import ReactDOM from 'react-dom'
+import { HashRouter, Switch, Route, Redirect } from 'react-router-dom'
 
-const App = () => {
-  return <div>Hello WORLD</div>
-}
+import 'bulma'
+import './style.scss'
 
-ReactDOM.render(
-  <App />,
-  document.getElementById('root')
+import Login from './components/Login'
+
+const App = () => (
+  <HashRouter>
+    <Switch>
+      <Route exact path="/login" component={Login} />
+    </Switch>
+  </HashRouter>
 )
+
+
+ReactDOM.render(<App />, document.getElementById('root'))
