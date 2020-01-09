@@ -136,5 +136,3 @@ REST_FRAMEWORK = { # added this to get rest framework to use our custom authenti
         'rest_framework.authentication.BasicAuthentication',
     ],
 }
-
-# AUTH_USER_MODEL = 'jwt_auth.User' # regsitering our custom user model as the auth model.
