@@ -49,7 +49,6 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    # 'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -137,5 +136,3 @@ REST_FRAMEWORK = { # added this to get rest framework to use our custom authenti
         'rest_framework.authentication.BasicAuthentication',
     ],
 }
-
-# AUTH_USER_MODEL = 'jwt_auth.User' # regsitering our custom user model as the auth model.
