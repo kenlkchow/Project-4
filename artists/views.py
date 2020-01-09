@@ -11,9 +11,9 @@ class ArtistListView(APIView):
     permission_classes = (IsAuthenticated, )
 
     def post(self, request):
-          request.data['owner'] = request.user.id
-          artist = ArtistSerializer(data=request.data)
-          if artist.is_valid():
-                artist.save()
-                return Response(artist.data, status=HTTP_201_CREATED)
-          return Response(artist.errors, status=HTTP_422_UNPROCESSABLE_ENTITY)
+        request.data['owner'] = request.user.id
+        artist = ArtistSerializer(data=request.data)
+        if artist.is_valid():
+            artist.save()
+            return Response(artist.data, status=HTTP_201_CREATED)
+        return Response(artist.errors, status=HTTP_422_UNPROCESSABLE_ENTITY)
