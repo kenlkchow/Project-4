@@ -17,3 +17,12 @@ class ArtistListView(APIView):
             artist.save()
             return Response(artist.data, status=HTTP_201_CREATED)
         return Response(artist.errors, status=HTTP_422_UNPROCESSABLE_ENTITY)
+
+class ArtistDetailView(APIView):
+
+    permission_classes = (IsAuthenticated, )
+
+    def delete(self, request, pk):
+        artist = Artist.objects.get(pk=pk)
+        artist.delete()
+        return Response(status=HTTP_204_NO_CONTENT)
