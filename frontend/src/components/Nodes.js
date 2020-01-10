@@ -2,40 +2,47 @@ import React, { useState, useEffect, useCallback } from 'react'
 import axios from 'axios'
 import 'bulma'
 
-// const initialNodes = { similarartists: { artist: [{ name: '' }] } }
 
 const Nodes = () => {
 
   const [mainNode, setMainNode] = useState({
 
-    id: '27'
+    id: '62108'
 
   })
 
+
   const [secondaryNodes, setSecondaryNodes] = useState([])
+
+  const [topTracks, setTopTracks] = useState([])
 
   const [thirdNode, setThirdNode] = useState([])
 
+
   const handleClick = useCallback((e) => {
 
-    console.log(e.target.getAttribute('id'))
 
     setMainNode({ ...mainNode, artist: e.target.getAttribute('id') })
 
     e.preventDefault()
 
-    axios.get(`https://cors-anywhere.herokuapp.com/api.deezer.com/artist/${e.target.getAttribute('id')}/related`)
+    const target = e.target.getAttribute('id')
 
-    
+    axios.get(`https://cors-anywhere.herokuapp.com/api.deezer.com/artist/${target}/related`)
+
+
       .then(res => {
         const newSimilar = res.data.data.slice(1, 5)
-        console.log(newSimilar)
         setSecondaryNodes(newSimilar)
+        axios.get(`https://cors-anywhere.herokuapp.com/api.deezer.com/artist/${target}/top`)
+
+          .then(res => {
+            const newtracks = res.data.data.slice(0, 3)
+            setTopTracks(newtracks)
+
+          })
+          .catch(err => console.log(err))
       })
-
-      .catch(err => console.log(err))
-    
-
   }, [])
 
 
@@ -45,15 +52,22 @@ const Nodes = () => {
 
       .then(res => {
         const test = res.data.data.slice(0, 4)
-        console.log(test)
         setSecondaryNodes(test)
+        axios.get(`https://cors-anywhere.herokuapp.com/api.deezer.com/artist/${mainNode.id}/top`)
+
+          .then(res => {
+            const tracks = res.data.data.slice(0, 3)
+            setTopTracks(tracks)
+
+          })
+          .catch(err => console.log(err))
       })
       .catch(err => console.log(err))
 
   }, [])
 
 
-  { console.log(secondaryNodes) }
+  { console.log(topTracks) }
 
 
   return <div>
@@ -69,9 +83,25 @@ const Nodes = () => {
 
           })}
         </div>
-      </div>
-    </div>
 
+        <div>
+          {secondaryNodes.map((artist, i) => {
+            return <img key={i} src={artist.picture}/>
+
+          })}
+        </div>
+
+        <div className="column">
+          <div>
+            {topTracks.map((track, i) => {
+              return <div key={i}> {track.title}</div>
+
+            })}
+          </div>
+        </div>
+      </div>
+
+    </div>
   </div>
 
 }
