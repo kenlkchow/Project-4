@@ -28,14 +28,16 @@ const Home = () => {
       <input className="input is-large" placeholder="Search artists" onChange={handleSearchChange}></input>
       {suggestions ? suggestions.map((artist, i) => {
         return <div key={i} className="level">
-          <div className="level-item">
-            <p>{artist.name}</p>
+          <div className="level-left">
+            <div className="level-item">
+              <p> - {artist.name}</p>
+              {/* here, include link using artist.id to node page where artist becomes primary node */}
+            </div>
           </div>
         </div>
-      }) : null }
+      }) : null}
     </div>
   </section>
-
 }
 
 export default Home
