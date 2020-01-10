@@ -12,10 +12,13 @@ const Home = () => {
   function handleSearchChange(e) {
     console.log(e.target.value)
     // setSearchBar(e.target.value)
-    axios.get(`http://ws.audioscrobbler.com/2.0/?method=artist.search&artist=${e.target.value}&api_key=6652c5a8cadca923253398103521219b&format=json`)
-      .then(res => setSuggestions(res.data.results.artistmatches.artist.slice(0, 10)))
-      .catch(err => console.log(err))
-    // suggestions.data && suggestions.data.results && suggestions.data.results.artistmatches ? setSlicedSuggestions(suggestions.data.results.artistmatches.artist.slice(0, 10)) : null
+    e.target.value !== '' ?
+      axios.get(`https://cors-anywhere.herokuapp.com/api.deezer.com/search/artist/?q=${e.target.value}`)
+        .then(res => setSuggestions(res.data.data.slice(0, 10)))
+        // .then(res => console.log(res.data))
+        .catch(err => console.log(err))
+      // suggestions.data && suggestions.data.results && suggestions.data.results.artistmatches ? setSlicedSuggestions(suggestions.data.results.artistmatches.artist.slice(0, 10)) : null
+      : setSuggestions('')
   }
 
   return <section className="section">
