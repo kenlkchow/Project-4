@@ -10,7 +10,9 @@ const Navbar = () => {
     <div className="navbar-brand">
       <Link className="navbar-item" to="/">
         <div className="title" id="logo-title">
+          <div className="bracket-nav is-size-8">[</div>
           <div className="title-name is-size-6 has-text-weight-bold">artist_Flow</div>
+          <div className="bracket-nav is-size-8">]</div>
         </div>
       </Link>
     </div>
