@@ -4,7 +4,7 @@ User = get_user_model()
 
 
 class Artist(models.Model):
-    spotifyId = models.CharField(max_length=64)
+    lastFMId = models.CharField(max_length=64)
     name = models.CharField(max_length=64)
     owner = models.ForeignKey(
         User,
