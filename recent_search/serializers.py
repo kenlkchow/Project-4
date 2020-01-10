@@ -4,4 +4,4 @@ from .models import RecentSearch
 class RecentSearchSerializer(serializers.ModelSerializer):
     class Meta:
         model = RecentSearch
-        fields = ('spotifyId', 'name')
+        fields = ('deezerId', 'name')
