@@ -21,7 +21,6 @@ const Profile = () => {
     })
       .then(resp => {
         setArtists(resp.data.artists)
-        console.log(resp.data)
       })
   }, [])
 
@@ -35,7 +34,6 @@ const Profile = () => {
         const artistId = resp.data.data[0].id
         axios.get(`https://cors-anywhere.herokuapp.com/api.deezer.com/artist/${artistId}/top`)
           .then(resp => {
-            console.log(resp.data.data)
             setSongPreviews(resp.data.data)
           })
       })
@@ -45,7 +43,6 @@ const Profile = () => {
     axios.get(`https://cors-anywhere.herokuapp.com/www.skiddle.com/api/v1/artists/?api_key=${API_KEY}&name=${name}`)
       .then(resp => {
         const skiddleId = resp.data.results[0].id
-        console.log(skiddleId)
         axios.get(`https://cors-anywhere.herokuapp.com/www.skiddle.com/api/v1/events/search/?api_key=${API_KEY}&a=${skiddleId}&country=GB`)
           .then(resp => {
             setGigs(resp.data.results)
@@ -58,9 +55,6 @@ const Profile = () => {
     getDeezerArtist(artist)
     getSkiddleGigs(artist)
   }
-
-  { console.log(singleArtist)}
-  { console.log(gigs)}
 
   return <section className="section">
     <div className="container">
@@ -85,11 +79,11 @@ const Profile = () => {
         </div>
         <div className="column">
           <div className="title has-text-centered">Gigs</div>
-          {/* {gigs.map((gig, i) => {
+          {gigs.map((gig, i) => {
             return <div key={i}>
-              {gig}
+              <p>{gig.venue.name} - {gig.venue.town}</p>
             </div>
-          })} */}
+          })}
         </div>
       </div>
     </div>
