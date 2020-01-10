@@ -58,7 +58,7 @@ const Login = (props) => {
           </label>
           <div className="control">
             <input
-              type="password"
+              type="text"
               name="password"
               className="input"
               onChange={handleChange}
