@@ -4,12 +4,15 @@ import { HashRouter, Switch, Route } from 'react-router-dom'
 
 import 'bulma'
 import './style.scss'
+
 import Register from './components/Register'
 import Login from './components/Login'
+import Home from './components/Home'
 
 const App = () => (
   <HashRouter>
     <Switch>
+      <Route exact path="/" component={Home} />
       <Route exact path="/register" component={Register} />
       <Route exact path="/login" component={Login} />
     </Switch>
