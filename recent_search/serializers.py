@@ -5,3 +5,4 @@ class RecentSearchSerializer(serializers.ModelSerializer):
     class Meta:
         model = RecentSearch
         fields = ('deezerId', 'name')
+        
