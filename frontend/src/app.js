@@ -6,12 +6,15 @@ import 'bulma'
 import './style.scss'
 import Register from './components/Register'
 import Login from './components/Login'
+import Nodes from './components/Nodes'
 
 const App = () => (
   <HashRouter>
     <Switch>
       <Route exact path="/register" component={Register} />
       <Route exact path="/login" component={Login} />
+      <Route exact path="/nodes" component={Nodes} />
+
     </Switch>
   </HashRouter>
 )
