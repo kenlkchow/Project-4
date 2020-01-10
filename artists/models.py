@@ -13,4 +13,4 @@ class Artist(models.Model):
     )
 
     def __str__(self):
-        return f'Artist {self.spotifyId} - {self.name}'
+        return f'Artist {self.deezerId} - {self.name}'
