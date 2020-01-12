@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import moment from 'moment'
 import Auth from '../lib/authMethods'
+import distance from '../lib/distanceMethod'
 
 const initialArtists = [{ artists: {} }]
 const initialSingleArtist = { id: '', name: '', picture_medium: '' }
@@ -21,7 +23,6 @@ const Profile = () => {
     })
       .then(resp => {
         setArtists(resp.data.artists)
-        console.log(resp.data)
       })
   }, [])
 
@@ -35,7 +36,6 @@ const Profile = () => {
         const artistId = resp.data.data[0].id
         axios.get(`https://cors-anywhere.herokuapp.com/api.deezer.com/artist/${artistId}/top`)
           .then(resp => {
-            console.log(resp.data.data)
             setSongPreviews(resp.data.data)
           })
       })
@@ -45,9 +45,9 @@ const Profile = () => {
     axios.get(`https://cors-anywhere.herokuapp.com/www.skiddle.com/api/v1/artists/?api_key=${API_KEY}&name=${name}`)
       .then(resp => {
         const skiddleId = resp.data.results[0].id
-        console.log(skiddleId)
         axios.get(`https://cors-anywhere.herokuapp.com/www.skiddle.com/api/v1/events/search/?api_key=${API_KEY}&a=${skiddleId}&country=GB`)
           .then(resp => {
+            console.log(resp.data)
             setGigs(resp.data.results)
           })
       })
@@ -59,19 +59,18 @@ const Profile = () => {
     getSkiddleGigs(artist)
   }
 
-  { console.log(singleArtist)}
-  { console.log(gigs)}
-
-  return <section className="section">
+  console.log(`${(distance(51.437291, -0.255294, 51.413792, -0.180206) * 0.000621371).toFixed(1)} miles`)
+  
+  return <section className="section" id="profile">
     <div className="container">
       <div className="columns">
-        <div className="column">
+        <div className="column" id="artist">
           <div className="title has-text-centered">Artists</div>
           {artists.map((artist, i) => {
             return <div key={i} title={artist.name} onClick={handleClick}>{artist.name}</div>
           })}
         </div>
-        <div className="column">
+        <div className="column" id="single-artist">
           <div className="title has-text-centered">Selected Artist</div>
           <div className="subtitle">{singleArtist.name}</div>
           <img src={singleArtist.picture_medium} alt=""/>
@@ -83,13 +82,13 @@ const Profile = () => {
             </div>
           })}
         </div>
-        <div className="column">
+        <div className="column" id="gigs">
           <div className="title has-text-centered">Gigs</div>
-          {/* {gigs.map((gig, i) => {
+          {gigs.map((gig, i) => {
             return <div key={i}>
-              {gig}
+              <p>{gig.venue.town} - {gig.venue.name} - {moment(gig.startdate).format('MMMM Do YYYY, h:mm a')}</p>
             </div>
-          })} */}
+          })}
         </div>
       </div>
     </div>
