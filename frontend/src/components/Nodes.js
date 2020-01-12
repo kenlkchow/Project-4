@@ -22,6 +22,8 @@ const Nodes = () => {
   const handleClick = useCallback((e) => {
 
 
+    setThirdNode({ ...mainNode })
+
     setMainNode({ ...mainNode, artist: e.target.getAttribute('id') })
 
     e.preventDefault()
@@ -67,7 +69,7 @@ const Nodes = () => {
   }, [])
 
 
-  { console.log(topTracks) }
+  { console.log(thirdNode) }
 
 
   return <div>
