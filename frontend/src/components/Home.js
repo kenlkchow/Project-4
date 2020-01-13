@@ -10,10 +10,9 @@ const Home = () => {
   const [suggestions, setSuggestions] = useState()
   // const [slicedSuggestions, setSlicedSuggestions] = useState([])
   const [recentSearches, setRecentSearches] = useState()
-  const [exportArtist, setExportArtist] = useState({ deezerId: '', artist: '' })
 
   function handleSearchChange(e) {
-    console.log(e.target.value)
+    // console.log(e.target.value)
     // setSearchBar(e.target.value)
     e.target.value !== '' ?
       axios.get(`https://cors-anywhere.herokuapp.com/api.deezer.com/search/artist/?q=${e.target.value}`)
@@ -41,25 +40,7 @@ const Home = () => {
       deezerId: id,
       name: artist
     })
-    setExportArtist({
-      deezerId: id,
-      name: artist
-    })
-    // console.log(id)
-    // console.log(artist)    // })
   }
-
-  function handleRecentSearchClick(e) {
-    // setExportArtist({
-    //   deezerId: search.
-    // })
-    e.persist()
-    setExportArtist({
-      deezerId: e.target.id,
-      name: e.target.innerText
-    })
-  }
-
 
 
   useEffect(() => {
@@ -69,6 +50,8 @@ const Home = () => {
 
   const effectLoad = 5
 
+
+
   return <section className="section">
     {/* {console.log(recentSearches)} */}
     {/* {console.log(suggestions)} */}
@@ -76,11 +59,17 @@ const Home = () => {
     <div className="container">
       <input className="input is-large" placeholder="Search artists" onChange={handleSearchChange}></input>
       {suggestions ? suggestions.map((artist, i) => {
-        return <Link key={i} to={{
-          pathname: '/nodes',
-          artist: exportArtist         
-        }}>
-          <div className="level" onClick={handleSuggestionClick}>
+        return <Link
+          key={i}
+          onClick={handleSuggestionClick}
+          to={{
+            pathname: '/nodes',
+            artist: {
+              deezerId: artist.id,
+              name: artist.name
+            }
+          }}>
+          <div className="level">
             <div className="level-left">
               <div className="level-item">
                 <p title={artist.name} id={artist.id}> - {artist.name} - {artist.id}</p>
@@ -93,12 +82,22 @@ const Home = () => {
     <div className="container">
       <h1>Recent Searches</h1>
       {recentSearches ? recentSearches.map((search, i) => {
-        return <div key={i}>
-          <p onClick={handleRecentSearchClick} id={search.deezerId}>{search.name}</p>
-        </div>
+        return <Link
+          key={i}
+          to={{
+            pathname: '/nodes',
+            artist: {
+              deezerId: search.deezerId,
+              name: search.name
+            }
+          }}>
+          <div>
+            <p>{search.name}</p>
+          </div>
+        </Link>
       }) : null}
     </div>
-  </section>
+  </section >
 }
 
 export default Home
