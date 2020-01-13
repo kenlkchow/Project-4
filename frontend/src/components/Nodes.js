@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import axios from 'axios'
 import 'bulma'
+import ReactAudioPlayer, { onPlay } from 'react-audio-player'
 
 
 const Nodes = (props) => {
@@ -9,7 +10,6 @@ const Nodes = (props) => {
     id: '62108'
 
   })
-
 
   const [secondaryNodes, setSecondaryNodes] = useState([])
   const [topTracks, setTopTracks] = useState([])
@@ -21,7 +21,6 @@ const Nodes = (props) => {
   })
 
   const [thirdNodeData, setThirdNodeData] = useState([])
-
 
   const handleClick = useCallback((e) => {
 
@@ -97,7 +96,11 @@ const Nodes = (props) => {
         <div className="column">
           <div>
             {topTracks.map((track, i) => {
-              return <div key={i}> {track.title}</div>
+              return <div key={i}> <ReactAudioPlayer
+                src={track.preview}
+                onPlay
+                controls
+              /></div>
 
             })}
           </div>
