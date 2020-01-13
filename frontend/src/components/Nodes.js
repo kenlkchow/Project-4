@@ -11,7 +11,7 @@ const Nodes = (props) => {
   const [secondaryNodes, setSecondaryNodes] = useState([])
   const [topTracks, setTopTracks] = useState([])
 
-  const [thirdNode, setThirdNode] = useState({
+  const [thirdNode] = useState({
 
     array: []
 
@@ -20,7 +20,7 @@ const Nodes = (props) => {
   const [thirdNodeData, setThirdNodeData] = useState({})
 
   const handleClick = useCallback((e) => {
-    
+
     e.preventDefault()
     const target = e.target.getAttribute('id')
     axios.get(`https://cors-anywhere.herokuapp.com/api.deezer.com/artist/${target}`)
@@ -32,25 +32,21 @@ const Nodes = (props) => {
             const newSimilar = res.data.data.slice(1, 5)
             setSecondaryNodes(newSimilar)
             thirdNode.array.push(target)
-            
-
-          })
-
-        axios.get(`https://cors-anywhere.herokuapp.com/api.deezer.com/artist/${target}/top`)
-          .then(res => {
-            const newtracks = res.data.data.slice(0, 3)
-            setTopTracks(newtracks)
-            axios.get(`https://cors-anywhere.herokuapp.com/api.deezer.com/artist/${thirdNode.array[thirdNode.array.length - 2]}`)
+            axios.get(`https://cors-anywhere.herokuapp.com/api.deezer.com/artist/${target}/top`)
               .then(res => {
-                const pastArtist = res.data
-                setThirdNodeData(pastArtist)
-
+                const newtracks = res.data.data.slice(0, 3)
+                setTopTracks(newtracks)
+                axios.get(`https://cors-anywhere.herokuapp.com/api.deezer.com/artist/${thirdNode.array[thirdNode.array.length - 2]}`)
+                  .then(res => {
+                    const pastArtist = res.data
+                    setThirdNodeData(pastArtist)
+                  })
+                  .catch(err => console.log(err))
               })
+              .catch(err => console.log(err))
           })
-
           .catch(err => console.log(err))
       })
-
   }, [])
 
 
@@ -68,30 +64,40 @@ const Nodes = (props) => {
               .then(res => {
                 const tracks = res.data.data.slice(0, 3)
                 setTopTracks(tracks)
-
               })
               .catch(err => console.log(err))
-
           })
           .catch(err => console.log(err))
       })
       .catch(err => console.log(err))
-
   }, [])
 
   return <div>
 
-    {/* {console.log(thirdNodeData)} */}
     {console.log(props.location.artist)}
     {console.log(thirdNodeData)}
 
     <div className="columns">
-      <div className="column">
-        {/* <div>{mainNode.map((artist, i) => {
-          return <div key={i} id={artist.id} onClick={handleClick}> {artist.name}</div>
 
-        })}</div> */}
+      <div className="column">
+        <div onClick={handleClick} id={thirdNodeData.id}> {thirdNodeData.name}</div>
+      </div>
+      <div className="column">
         {mainNode.name}
+        <img src={mainNode.picture} />
+      </div>
+
+      <div className="column">
+        <div>
+          {topTracks.map((track, i) => {
+            return <div key={i}> <ReactAudioPlayer
+              src={track.preview}
+              // onPlay
+              controls
+            /></div>
+
+          })}
+        </div>
       </div>
 
       <div className="column">
@@ -100,31 +106,6 @@ const Nodes = (props) => {
             return <div key={i} id={artist.id} onClick={handleClick}> {artist.name}</div>
 
           })}
-        </div>
-
-        <div>
-          {secondaryNodes.map((artist, i) => {
-            return <img key={i} src={artist.picture} />
-
-          })}
-        </div>
-
-        <div className="column">
-          <div>
-            {topTracks.map((track, i) => {
-              return <div key={i}> <ReactAudioPlayer
-                src={track.preview}
-                onPlay
-                controls
-              /></div>
-
-            })}
-          </div>
-        </div>
-        <div>
-          <div onClick={handleClick} id={thirdNodeData.id}> {thirdNodeData.name}</div>
-
-      
         </div>
 
       </div>

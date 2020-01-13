@@ -16,6 +16,9 @@ const Profile = () => {
   const [singleArtist, setSingleArtist] = useState(initialSingleArtist)
   const [songPreviews, setSongPreviews] = useState(initialSongPreviews)
   const [gigs, setGigs] = useState(initialGigs)
+  const [cities, setCities] = useState([])
+  const [userPosition, setUserPosition] = useState({ latitude: '', longitude: '' })
+
 
   useEffect(() => {
     axios.get('/api/profile', {
@@ -47,8 +50,25 @@ const Profile = () => {
         const skiddleId = resp.data.results[0].id
         axios.get(`https://cors-anywhere.herokuapp.com/www.skiddle.com/api/v1/events/search/?api_key=${API_KEY}&a=${skiddleId}&country=GB`)
           .then(resp => {
-            console.log(resp.data)
-            setGigs(resp.data.results)
+            const data = resp.data.results
+            const test = resp.data.results.map((gig) => {
+              return gig.venue.town
+            })
+
+            const cities = test.filter((a, b) => test.indexOf(a) === b)
+            const newData = []
+
+            for (let i = 0; i < cities.length; i++) {
+              // cities[i] = cities[i].trim()
+              newData.push({ [cities[i]]: [] })
+              for (let j = 0; j < data.length; j++) {
+                if (cities[i] === data[j].venue.town) {
+                  newData[i][cities[i]].push(data[j])
+                }
+              }
+            }
+            setCities(cities)
+            setGigs(newData)
           })
       })
   }
@@ -56,25 +76,38 @@ const Profile = () => {
   function handleClick(e) {
     const artist = e.target.title
     getDeezerArtist(artist)
+    setCities([])
+    setGigs([])
     getSkiddleGigs(artist)
   }
 
-  console.log(`${(distance(51.437291, -0.255294, 51.413792, -0.180206) * 0.000621371).toFixed(1)} miles`)
+  function getLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(setPosition)
+    } else {
+      console.log('geolocation not supported')
+    }
+  }
+
+  function setPosition(position) {
+    setUserPosition({ latitude: position.coords.latitude, longitude: position.coords.longitude })
+  }
   
   return <section className="section" id="profile">
     <div className="container">
+      <div className="button is-link" onClick={getLocation}>Get my location</div>
       <div className="columns">
-        <div className="column" id="artist">
-          <div className="title has-text-centered">Artists</div>
+        <div className="column" id="artists">
+          <div className="title has-text-centered has-text-white">Artists</div>
           {artists.map((artist, i) => {
             return <div key={i} title={artist.name} onClick={handleClick}>{artist.name}</div>
           })}
         </div>
-        <div className="column" id="single-artist">
+        <div className="column" id="singleArtist">
           <div className="title has-text-centered">Selected Artist</div>
           <div className="subtitle">{singleArtist.name}</div>
           <img src={singleArtist.picture_medium} alt=""/>
-          <div>Top tracks</div>
+          {songPreviews.length === 0 ? null : <div>Top tracks</div>}
           {songPreviews.map((song, i) => {
             return <div key={i}>
               <p>{song.title}</p>
@@ -84,9 +117,20 @@ const Profile = () => {
         </div>
         <div className="column" id="gigs">
           <div className="title has-text-centered">Gigs</div>
-          {gigs.map((gig, i) => {
+          {/* {gigs.map((gig, i) => {
             return <div key={i}>
               <p>{gig.venue.town} - {gig.venue.name} - {moment(gig.startdate).format('MMMM Do YYYY, h:mm a')}</p>
+              <p>{gig.venue.town} - {gig.venue.name}{userPosition.latitude ? ` - ${distance(userPosition.latitude, userPosition.longitude, gig.venue.latitude, gig.venue.longitude)} miles` : null}</p>
+            </div>
+          })} */}
+          {gigs.map((city, i) => {
+            return <div key={i}>
+              <p className="title">{city[cities[i]][0].venue.town}</p>
+              {city[cities[i]].map((gig, j) => {
+                return <div key={j}>
+                  <p>{moment(gig.startdate).format('MMMM Do YYYY, h:mma')}</p>
+                </div>
+              })}
             </div>
           })}
         </div>
