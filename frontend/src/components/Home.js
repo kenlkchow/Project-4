@@ -45,7 +45,11 @@ const Home = () => {
 
   useEffect(() => {
     axios.get('http://localhost:4000/api/recentsearch')
-      .then(res => setRecentSearches(res.data.reverse().slice(0,10)))
+      .then(res => {
+        const recentSearchesDuplicates = res.data.reverse().slice(0, 10)
+        const recentSearchesDedup = recentSearchesDuplicates.filter((v, i, a) => a.findIndex(t => JSON.stringify(t) === JSON.stringify(v)) === i )
+        setRecentSearches(recentSearchesDedup)
+      })
   }, [effectLoad])
 
   const effectLoad = 5
