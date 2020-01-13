@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 
+import { Link } from 'react-router-dom'
+
 
 const Home = () => {
 
@@ -10,7 +12,7 @@ const Home = () => {
   const [recentSearches, setRecentSearches] = useState()
 
   function handleSearchChange(e) {
-    console.log(e.target.value)
+    // console.log(e.target.value)
     // setSearchBar(e.target.value)
     e.target.value !== '' ?
       axios.get(`https://cors-anywhere.herokuapp.com/api.deezer.com/search/artist/?q=${e.target.value}`)
@@ -21,52 +23,81 @@ const Home = () => {
       : setSuggestions('')
   }
 
-  function handleClick(e) {
+  // function redirectToNode(id, artist) {
+  //   const exportArtist = {
+  //     id,
+  //     artist
+  //   }
+  //   props.history.push('/nodes', exportArtist)
+  //   console.log(exportArtist)
+  // }
+
+  function handleSuggestionClick(e) {
     e.persist()
-    // here, also add the function to redirect user to node page
+    const id = e.target.id
+    const artist = e.target.title
     axios.post('http://localhost:4000/api/recentsearch', {
-      deezerId: e.target.id,
-      name: e.target.title
+      deezerId: id,
+      name: artist
     })
-    console.log(e.target.title)
-    console.log(e.target.id)
-    // })
   }
 
 
   useEffect(() => {
     axios.get('http://localhost:4000/api/recentsearch')
-      .then(res => setRecentSearches(res.data))
+      .then(res => setRecentSearches(res.data.reverse().slice(0,10)))
   }, [effectLoad])
 
   const effectLoad = 5
 
-  return <section className="section">
-    {console.log(recentSearches)}
-    {console.log(suggestions)}
 
+
+  return <section className="section">
+    {/* {console.log(recentSearches)} */}
+    {/* {console.log(suggestions)} */}
+    {/* {console.log(exportArtist)} */}
     <div className="container">
       <input className="input is-large" placeholder="Search artists" onChange={handleSearchChange}></input>
       {suggestions ? suggestions.map((artist, i) => {
-        return <div key={i} className="level" onClick={handleClick}>
-          <div className="level-left">
-            <div className="level-item">
-              <p title={artist.name} id={artist.id}> - {artist.name} - {artist.id}</p>
-              {/* here, include link using artist.id to node page where artist becomes primary node */}
+        return <Link
+          key={i}
+          onClick={handleSuggestionClick}
+          to={{
+            pathname: '/nodes',
+            artist: {
+              deezerId: artist.id,
+              name: artist.name
+            }
+          }}>
+          <div className="level">
+            <div className="level-left">
+              <div className="level-item">
+                <p title={artist.name} id={artist.id}> - {artist.name} - {artist.id}</p>
+              </div>
             </div>
           </div>
-        </div>
+        </Link>
       }) : null}
     </div>
     <div className="container">
       <h1>Recent Searches</h1>
       {recentSearches ? recentSearches.map((search, i) => {
-        return <div key={i}>
-          <p>{search.name}</p>
-        </div>
+        return <Link
+          key={i}
+          to={{
+            pathname: '/nodes',
+            artist: {
+              deezerId: search.deezerId,
+              name: search.name
+            }
+          }}>
+          <div>
+            <p>{search.name}</p>
+          </div>
+        </Link>
       }) : null}
     </div>
-  </section>
+  </section >
 }
 
 export default Home
