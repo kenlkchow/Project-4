@@ -53,11 +53,11 @@ const Nodes = (props) => {
 
 
   useEffect(() => {
-    axios.get(`https://cors-anywhere.herokuapp.com/api.deezer.com/artist/${mainNode.id}/related`)
+    axios.get(`https://cors-anywhere.herokuapp.com/api.deezer.com/artist/${props.location.artist.deezerId}/related`)
       .then(res => {
         const test = res.data.data.slice(0, 4)
         setSecondaryNodes(test)
-        axios.get(`https://cors-anywhere.herokuapp.com/api.deezer.com/artist/${mainNode.id}/top`)
+        axios.get(`https://cors-anywhere.herokuapp.com/api.deezer.com/artist/${props.location.artist.deezerId}/top`)
           .then(res => {
             const tracks = res.data.data.slice(0, 3)
             setTopTracks(tracks)
