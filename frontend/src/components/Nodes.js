@@ -3,7 +3,9 @@ import axios from 'axios'
 import 'bulma'
 
 
-const Nodes = () => {
+const Nodes = (props) => {
+
+  console.log(props.location.state)
 
   const [mainNode, setMainNode] = useState({
 

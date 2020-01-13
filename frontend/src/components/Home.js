@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 
+import { Link } from 'react-router-dom'
+
 
 const Home = () => {
 
@@ -8,6 +10,7 @@ const Home = () => {
   const [suggestions, setSuggestions] = useState()
   // const [slicedSuggestions, setSlicedSuggestions] = useState([])
   const [recentSearches, setRecentSearches] = useState()
+  const [exportArtist, setExportArtist] = useState({ deezerId: '', artist: '' })
 
   function handleSearchChange(e) {
     console.log(e.target.value)
@@ -21,17 +24,42 @@ const Home = () => {
       : setSuggestions('')
   }
 
-  function handleClick(e) {
+  // function redirectToNode(id, artist) {
+  //   const exportArtist = {
+  //     id,
+  //     artist
+  //   }
+  //   props.history.push('/nodes', exportArtist)
+  //   console.log(exportArtist)
+  // }
+
+  function handleSuggestionClick(e) {
     e.persist()
-    // here, also add the function to redirect user to node page
+    const id = e.target.id
+    const artist = e.target.title
     axios.post('http://localhost:4000/api/recentsearch', {
-      deezerId: e.target.id,
-      name: e.target.title
+      deezerId: id,
+      name: artist
     })
-    console.log(e.target.title)
-    console.log(e.target.id)
-    // })
+    setExportArtist({
+      deezerId: id,
+      name: artist
+    })
+    // console.log(id)
+    // console.log(artist)    // })
   }
+
+  function handleRecentSearchClick(e) {
+    // setExportArtist({
+    //   deezerId: search.
+    // })
+    e.persist()
+    setExportArtist({
+      deezerId: e.target.id,
+      name: e.target.innerText
+    })
+  }
+
 
 
   useEffect(() => {
@@ -42,27 +70,31 @@ const Home = () => {
   const effectLoad = 5
 
   return <section className="section">
-    {console.log(recentSearches)}
-    {console.log(suggestions)}
-
+    {/* {console.log(recentSearches)} */}
+    {/* {console.log(suggestions)} */}
+    {/* {console.log(exportArtist)} */}
     <div className="container">
       <input className="input is-large" placeholder="Search artists" onChange={handleSearchChange}></input>
       {suggestions ? suggestions.map((artist, i) => {
-        return <div key={i} className="level" onClick={handleClick}>
-          <div className="level-left">
-            <div className="level-item">
-              <p title={artist.name} id={artist.id}> - {artist.name} - {artist.id}</p>
-              {/* here, include link using artist.id to node page where artist becomes primary node */}
+        return <Link key={i} to={{
+          pathname: '/nodes',
+          artist: exportArtist         
+        }}>
+          <div className="level" onClick={handleSuggestionClick}>
+            <div className="level-left">
+              <div className="level-item">
+                <p title={artist.name} id={artist.id}> - {artist.name} - {artist.id}</p>
+              </div>
             </div>
           </div>
-        </div>
+        </Link>
       }) : null}
     </div>
     <div className="container">
       <h1>Recent Searches</h1>
       {recentSearches ? recentSearches.map((search, i) => {
         return <div key={i}>
-          <p>{search.name}</p>
+          <p onClick={handleRecentSearchClick} id={search.deezerId}>{search.name}</p>
         </div>
       }) : null}
     </div>
