@@ -45,7 +45,7 @@ const Home = () => {
 
   useEffect(() => {
     axios.get('http://localhost:4000/api/recentsearch')
-      .then(res => setRecentSearches(res.data))
+      .then(res => setRecentSearches(res.data.reverse().slice(0,10)))
   }, [effectLoad])
 
   const effectLoad = 5
