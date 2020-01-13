@@ -5,7 +5,6 @@ import ReactAudioPlayer, { onPlay } from 'react-audio-player'
 
 
 const Nodes = (props) => {
-
   const [mainNode, setMainNode] = useState({
 
     id: '62108'
@@ -71,6 +70,7 @@ const Nodes = (props) => {
 
   return <div>
 
+    {/* {console.log(thirdNodeData)} */}
     {console.log(props.location.artist)}
 
     <div className="columns">
