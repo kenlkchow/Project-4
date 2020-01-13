@@ -11,7 +11,7 @@ const Nodes = (props) => {
   const [secondaryNodes, setSecondaryNodes] = useState([])
   const [topTracks, setTopTracks] = useState([])
 
-  const [thirdNode, setThirdNode] = useState({
+  const [thirdNode] = useState({
 
     array: []
 
@@ -41,7 +41,9 @@ const Nodes = (props) => {
                     const pastArtist = res.data
                     setThirdNodeData(pastArtist)
                   })
+                  .catch(err => console.log(err))
               })
+              .catch(err => console.log(err))
           })
           .catch(err => console.log(err))
       })
@@ -72,17 +74,30 @@ const Nodes = (props) => {
 
   return <div>
 
-    {/* {console.log(thirdNodeData)} */}
     {console.log(props.location.artist)}
     {console.log(thirdNodeData)}
 
     <div className="columns">
-      <div className="column">
-        {/* <div>{mainNode.map((artist, i) => {
-          return <div key={i} id={artist.id} onClick={handleClick}> {artist.name}</div>
 
-        })}</div> */}
+      <div className="column">
+        <div onClick={handleClick} id={thirdNodeData.id}> {thirdNodeData.name}</div>
+      </div>
+      <div className="column">
         {mainNode.name}
+        <img src={mainNode.picture} />
+      </div>
+
+      <div className="column">
+        <div>
+          {topTracks.map((track, i) => {
+            return <div key={i}> <ReactAudioPlayer
+              src={track.preview}
+              // onPlay
+              controls
+            /></div>
+
+          })}
+        </div>
       </div>
 
       <div className="column">
@@ -91,31 +106,6 @@ const Nodes = (props) => {
             return <div key={i} id={artist.id} onClick={handleClick}> {artist.name}</div>
 
           })}
-        </div>
-
-        <div>
-          {secondaryNodes.map((artist, i) => {
-            return <img key={i} src={artist.picture} />
-
-          })}
-        </div>
-
-        <div className="column">
-          <div>
-            {topTracks.map((track, i) => {
-              return <div key={i}> <ReactAudioPlayer
-                src={track.preview}
-                onPlay
-                controls
-              /></div>
-
-            })}
-          </div>
-        </div>
-        <div>
-          <div onClick={handleClick} id={thirdNodeData.id}> {thirdNodeData.name}</div>
-
-
         </div>
 
       </div>
