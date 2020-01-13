@@ -45,7 +45,8 @@ function distVincenty(lat1, lon1, lat2, lon2) {
     B = uSq / 1024 * (256 + uSq * (-128 + uSq * (74 - 47 * uSq))),
     deltaSigma = B * sinSigma * (cos2SigmaM + B / 4 * (cosSigma * (-1 + 2 * cos2SigmaM * cos2SigmaM) - B / 6 * cos2SigmaM * (-3 + 4 * sinSigma * sinSigma) * (-3 + 4 * cos2SigmaM * cos2SigmaM))),
     s = b * A * (sigma - deltaSigma)
-  return s.toFixed(3)
+  // return s.toFixed(3)
+  return (s * 0.000621371).toFixed(1)
 }
 
 export default distVincenty

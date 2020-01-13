@@ -1,15 +1,17 @@
-#artist {
-  background-color: #95B4CC;
+#profile {
+  background-color: #FFDDAA;
 }
 
-#single-artist {
-  background-color: #EEF1E6;
+#artists {
+  background-color: #FFB448;
+  border-radius: 1em 0em 0em 1em;
+}
+
+#singleArtist {
+  background-color: #FDFDD2;
 }
 
 #gigs {
-  background-color: #FEC9C9;
-}
-
-#profile {
-  background-color: #FFFFCF;
+  background-color: #FFB448;
+  border-radius: 0em 1em 1em 0em;
 }
