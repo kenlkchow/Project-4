@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react'
+import ReactAudioPlayer from 'react-audio-player'
+import Collapsible from 'react-collapsible'
 import axios from 'axios'
 import moment from 'moment'
 import Auth from '../lib/authMethods'
 import distance from '../lib/distanceMethod'
+import GigModal from '../components/GigModal'
 
 const initialArtists = [{ artists: {} }]
 const initialSingleArtist = { id: '', name: '', picture_medium: '' }
@@ -16,9 +19,11 @@ const Profile = () => {
   const [singleArtist, setSingleArtist] = useState(initialSingleArtist)
   const [songPreviews, setSongPreviews] = useState(initialSongPreviews)
   const [gigs, setGigs] = useState(initialGigs)
+  const [singleGig, setSingleGig] = useState({})
   const [cities, setCities] = useState([])
   const [userPosition, setUserPosition] = useState({ latitude: '', longitude: '' })
-
+  const [loading, setLoading] = useState(false)
+  const [modal, setModal] = useState(false)
 
   useEffect(() => {
     axios.get('/api/profile', {
@@ -81,8 +86,18 @@ const Profile = () => {
     getSkiddleGigs(artist)
   }
 
+  function toggleModal() {
+    setModal(!modal)
+  }
+
+  function handleGigClick(gig) {
+    setSingleGig(gig)
+    toggleModal()
+  }
+
   function getLocation() {
     if (navigator.geolocation) {
+      setLoading(true)
       navigator.geolocation.getCurrentPosition(setPosition)
     } else {
       console.log('geolocation not supported')
@@ -91,51 +106,54 @@ const Profile = () => {
 
   function setPosition(position) {
     setUserPosition({ latitude: position.coords.latitude, longitude: position.coords.longitude })
+    setLoading(false)
   }
   
   return <section className="section" id="profile">
     <div className="container">
-      <div className="button is-link" onClick={getLocation}>Get my location</div>
       <div className="columns">
         <div className="column" id="artists">
           <div className="title has-text-centered has-text-white">Artists</div>
           {artists.map((artist, i) => {
-            return <div key={i} title={artist.name} onClick={handleClick}>{artist.name}</div>
+            return <div key={i} title={artist.name} onClick={handleClick} className="artist has-text-white">{artist.name}</div>
           })}
         </div>
         <div className="column" id="singleArtist">
           <div className="title has-text-centered">Selected Artist</div>
-          <div className="subtitle">{singleArtist.name}</div>
-          <img src={singleArtist.picture_medium} alt=""/>
-          {songPreviews.length === 0 ? null : <div>Top tracks</div>}
-          {songPreviews.map((song, i) => {
+          <div className="subtitle has-text-centered">{singleArtist.name}</div>
+          <img src={singleArtist.picture_medium} alt="" />
+          {songPreviews.length === 0 ? null : <p className="subtitle">Top tracks</p>}
+          {songPreviews.slice(0,3).map((song, i) => {
             return <div key={i}>
               <p>{song.title}</p>
-              <audio src={song.preview}></audio>
+              <ReactAudioPlayer src={song.preview} controls />
             </div>
           })}
         </div>
         <div className="column" id="gigs">
-          <div className="title has-text-centered">Gigs</div>
-          {/* {gigs.map((gig, i) => {
-            return <div key={i}>
-              <p>{gig.venue.town} - {gig.venue.name} - {moment(gig.startdate).format('MMMM Do YYYY, h:mm a')}</p>
-              <p>{gig.venue.town} - {gig.venue.name}{userPosition.latitude ? ` - ${distance(userPosition.latitude, userPosition.longitude, gig.venue.latitude, gig.venue.longitude)} miles` : null}</p>
-            </div>
-          })} */}
+          <p className="title has-text-centered has-text-white">Gigs</p>
+          <div className={!loading ? 'button is-small' : 'button is-small is-loading'} onClick={getLocation}>How far away?</div>
           {gigs.map((city, i) => {
-            return <div key={i}>
-              <p className="title">{city[cities[i]][0].venue.town}</p>
+            return <Collapsible key={i} trigger={city[cities[i]][0].venue.town}>
               {city[cities[i]].map((gig, j) => {
                 return <div key={j}>
-                  <p>{moment(gig.startdate).format('MMMM Do YYYY, h:mma')}</p>
+                  <p onClick={() => handleGigClick(gig)} className="has-text-white">
+                    {gig.venue.name} - {moment(gig.date).format('MMM Do YYYY')} {userPosition.latitude ? ` - ${distance(userPosition.latitude, userPosition.longitude, gig.venue.latitude, gig.venue.longitude)} miles` : 
+                      null
+                    }
+                  </p>
                 </div>
               })}
-            </div>
+            </Collapsible>
           })}
         </div>
       </div>
     </div>
+
+    {modal ? <GigModal
+      setModal={setModal}
+      gig={singleGig}
+      toggleModal={toggleModal} /> : null}
   </section>
 }
 
