@@ -1,3 +1,34 @@
+@charset "utf-8";
+
+// Import a Google Font
+@import url('https://fonts.googleapis.com/css?family=Nunito:400,700');
+
+// Set your brand colors
+$light-grey: rgba(242, 242, 242, 0.3);
+
+
+// Update Bulma's global variables
+
+
+// Update some of Bulma's component variables
+$input-placeholder-color: $light-grey;
+
+// Import only what you need from Bulma
+@import "../../node_modules/bulma/sass/utilities/_all.sass";
+@import "../../node_modules/bulma/sass/base/_all.sass";
+@import "../../node_modules/bulma/sass/elements/button.sass";
+@import "../../node_modules/bulma/sass/elements/container.sass";
+@import "../../node_modules/bulma/sass/elements/title.sass";
+@import "../../node_modules/bulma/sass/form/_all.sass";
+@import "../../node_modules/bulma/sass/components/navbar.sass";
+@import "../../node_modules/bulma/sass/layout/hero.sass";
+@import "../../node_modules/bulma/sass/layout/section.sass";
+
+
+
+
+
+
 html, body {
   height: 100%;
   background-image: url("https://wallpapercave.com/wp/wp2732962.jpg") ;
@@ -196,4 +227,16 @@ img {
 #search-section{
   padding-left: 175px;
   padding-right: 175px;
+}
+
+
+
+#searchbar{
+  border-width: 3px;
+  border-style: dashed;
+  border-color: lightgray;
+  background: rgba(239, 192, 80, 0.3);
+  border-radius: 0.5em;
+  color: white;
+  $input-placeholder-color: white;
 }
