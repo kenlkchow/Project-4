@@ -14,7 +14,6 @@ html, body {
 }
 
 #profile {
-  background-color: #FFDDAA;
   #root {
     height: 100%;
     #profile {
@@ -159,7 +158,7 @@ img {
   border-color: lightgray;
 }
 
-#gigs{
+#gigs {
   border: 2px solid #FDFDD2;
   display: flex;
   flex-direction: column;
@@ -189,8 +188,8 @@ img {
   }
   .button:hover {
     background-color: white;
-    border: 4px solid #FFB448;
-    color: #FFB448;
+    border: 4px solid white;
+    color: #303030;
   }
 }
 
