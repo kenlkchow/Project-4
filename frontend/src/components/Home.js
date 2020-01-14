@@ -3,7 +3,6 @@ import axios from 'axios'
 
 import { Link } from 'react-router-dom'
 
-
 const Home = () => {
 
   // const [searchBar, setSearchBar] = useState('')
@@ -47,7 +46,7 @@ const Home = () => {
     axios.get('http://localhost:4000/api/recentsearch')
       .then(res => {
         const recentSearchesDuplicates = res.data.reverse().slice(0, 10)
-        const recentSearchesDedup = recentSearchesDuplicates.filter((v, i, a) => a.findIndex(t => JSON.stringify(t) === JSON.stringify(v)) === i )
+        const recentSearchesDedup = recentSearchesDuplicates.filter((v, i, a) => a.findIndex(t => JSON.stringify(t) === JSON.stringify(v)) === i)
         setRecentSearches(recentSearchesDedup)
       })
   }, [effectLoad])
@@ -56,12 +55,12 @@ const Home = () => {
 
 
 
-  return <section className="section">
+  return <section className="section" id="search-section">
     {/* {console.log(recentSearches)} */}
     {/* {console.log(suggestions)} */}
     {/* {console.log(exportArtist)} */}
     <div className="container">
-      <input className="input is-large" placeholder="Search artists" onChange={handleSearchChange}></input>
+      <input className="input is-large" id="searchbar" placeholder="Search artists" onChange={handleSearchChange}></input>
       {suggestions ? suggestions.map((artist, i) => {
         return <Link
           key={i}
@@ -81,7 +80,79 @@ const Home = () => {
             </div>
           </div>
         </Link>
-      }) : null}
+      }) : <div>
+        <div className="level">
+          <div className="level-left">
+            <div className="level-item">
+              <p></p>
+            </div>
+          </div>
+        </div>
+        <div className="level">
+          <div className="level-left">
+            <div className="level-item">
+              <p></p>
+            </div>
+          </div>
+        </div>
+        <div className="level">
+          <div className="level-left">
+            <div className="level-item">
+              <p></p>
+            </div>
+          </div>
+        </div>
+        <div className="level">
+          <div className="level-left">
+            <div className="level-item">
+              <p></p>
+            </div>
+          </div>
+        </div>
+        <div className="level">
+          <div className="level-left">
+            <div className="level-item">
+              <p></p>
+            </div>
+          </div>
+        </div>
+        <div className="level">
+          <div className="level-left">
+            <div className="level-item">
+              <p></p>
+            </div>
+          </div>
+        </div>
+        <div className="level">
+          <div className="level-left">
+            <div className="level-item">
+              <p></p>
+            </div>
+          </div>
+        </div>
+        <div className="level">
+          <div className="level-left">
+            <div className="level-item">
+              <p></p>
+            </div>
+          </div>
+        </div>
+        <div className="level">
+          <div className="level-left">
+            <div className="level-item">
+              <p></p>
+            </div>
+          </div>
+        </div>
+        <div className="level">
+          <div className="level-left">
+            <div className="level-item">
+              <p></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      }
     </div>
     <div className="container">
       <h1>Recent Searches</h1>
