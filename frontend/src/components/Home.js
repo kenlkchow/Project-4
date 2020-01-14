@@ -75,7 +75,7 @@ const Home = () => {
           <div className="level">
             <div className="level-left">
               <div className="level-item">
-                <p title={artist.name} id={artist.id}> - {artist.name} - {artist.id}</p>
+                <p title={artist.name} id={artist.id}>{artist.name}</p>
               </div>
             </div>
           </div>
@@ -157,19 +157,17 @@ const Home = () => {
     <div className="container">
       <h1>Recent Searches</h1>
       {recentSearches ? recentSearches.map((search, i) => {
-        return <Link
-          key={i}
-          to={{
-            pathname: '/nodes',
-            artist: {
-              deezerId: search.deezerId,
-              name: search.name
-            }
-          }}>
-          <div>
-            <p>{search.name}</p>
-          </div>
-        </Link>
+        return <div key={i}>
+          <p><Link
+            to={{
+              pathname: '/nodes',
+              artist: {
+                deezerId: search.deezerId,
+                name: search.name
+              }
+            }}>{search.name}</Link></p>
+        </div>
+
       }) : null}
     </div>
   </section >
