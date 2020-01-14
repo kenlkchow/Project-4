@@ -1,10 +1,19 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import axios from 'axios'
 import 'bulma'
-import ReactAudioPlayer from 'react-audio-player'
+import ReactAudioPlayer from 'react-simple-audio-player'
+import chroma from 'chroma-js'
 
 
 const Nodes = (props) => {
+
+  const colorScale = chroma
+    .scale([
+      '#303030',
+      '#D3D3D3'
+    ])
+    .mode('lch')
+    .colors(5)
 
   const [mainNode, setMainNode] = useState({})
 
@@ -76,40 +85,43 @@ const Nodes = (props) => {
 
     {console.log(props.location.artist)}
     {console.log(thirdNodeData)}
-
-    <div className="columns">
-
-      <div className="column">
-        <div onClick={handleClick} id={thirdNodeData.id}> {thirdNodeData.name}</div>
-      </div>
-      <div className="column">
-        {mainNode.name}
-        <img src={mainNode.picture} />
-      </div>
-
-      <div className="column">
-        <div>
-          {topTracks.map((track, i) => {
-            return <div key={i}> <ReactAudioPlayer
-              src={track.preview}
-              // onPlay
-              controls
-            /></div>
-
-          })}
-        </div>
-      </div>
-
-      <div className="column">
-        <div>
-          {secondaryNodes.map((artist, i) => {
-            return <div key={i} id={artist.id} onClick={handleClick}> {artist.name}</div>
-
-          })}
+    <div>
+      <div className="container-div">
+        <div className="third-node">
+          <div onClick={handleClick} id={thirdNodeData.id}> {thirdNodeData.name}</div>
         </div>
 
-      </div>
+        <div>
+          <div className="main-node main-node-container">
+            <div className="artist-pic">
+              <img className="artist-pic" src={mainNode.picture} />
+            </div>
+            <div>
+              {mainNode.name}
+            </div>
+            <div className="audio-container">
+              {topTracks.map((track, i) => {
+                return <div key={i}> <ReactAudioPlayer
+                  url={track.preview} colorScale={colorScale}
 
+                /></div>
+
+              })}
+            </div>
+          </div>
+        </div>
+
+        <div >
+          <div className="second-node-container">
+            {secondaryNodes.map((artist, i) => {
+              return <div key={i} id={artist.id} className="second-node " onClick={handleClick}> {artist.name}</div>
+
+            })}
+          </div>
+
+        </div>
+
+      </div>
     </div>
   </div>
 
