@@ -57,118 +57,49 @@ const Home = () => {
 
   return <section className="section" id="search-section">
     {/* {console.log(recentSearches)} */}
-    {/* {console.log(suggestions)} */}
+    {console.log(!!suggestions)}
     {/* {console.log(exportArtist)} */}
     <div className="container">
       <input className="input is-large" id="searchbar" placeholder="Search artists" onChange={handleSearchChange}></input>
-      {suggestions ? suggestions.map((artist, i) => {
-        return <Link
-          key={i}
-          onClick={handleSuggestionClick}
-          to={{
-            pathname: '/nodes',
-            artist: {
-              deezerId: artist.id,
-              name: artist.name
-            }
-          }}>
-          <div className="level">
-            <div className="level-left">
-              <div className="level-item">
-                <p title={artist.name} id={artist.id}>{artist.name}</p>
-              </div>
-            </div>
-          </div>
-        </Link>
-      }) : <div>
-        <div className="level">
-          <div className="level-left">
-            <div className="level-item">
-              <p></p>
-            </div>
-          </div>
-        </div>
-        <div className="level">
-          <div className="level-left">
-            <div className="level-item">
-              <p></p>
-            </div>
-          </div>
-        </div>
-        <div className="level">
-          <div className="level-left">
-            <div className="level-item">
-              <p></p>
-            </div>
-          </div>
-        </div>
-        <div className="level">
-          <div className="level-left">
-            <div className="level-item">
-              <p></p>
-            </div>
-          </div>
-        </div>
-        <div className="level">
-          <div className="level-left">
-            <div className="level-item">
-              <p></p>
-            </div>
-          </div>
-        </div>
-        <div className="level">
-          <div className="level-left">
-            <div className="level-item">
-              <p></p>
-            </div>
-          </div>
-        </div>
-        <div className="level">
-          <div className="level-left">
-            <div className="level-item">
-              <p></p>
-            </div>
-          </div>
-        </div>
-        <div className="level">
-          <div className="level-left">
-            <div className="level-item">
-              <p></p>
-            </div>
-          </div>
-        </div>
-        <div className="level">
-          <div className="level-left">
-            <div className="level-item">
-              <p></p>
-            </div>
-          </div>
-        </div>
-        <div className="level">
-          <div className="level-left">
-            <div className="level-item">
-              <p></p>
-            </div>
-          </div>
-        </div>
-      </div>
-      }
-    </div>
-    <div className="container">
-      <h1>Recent Searches</h1>
-      {recentSearches ? recentSearches.map((search, i) => {
-        return <div key={i}>
-          <p><Link
+      <div className={!suggestions ? 'placeholder' : 'suggestions-container'}>
+        {suggestions ? suggestions.map((artist, i) => {
+          return <Link
+            key={i}
+            onClick={handleSuggestionClick}
             to={{
               pathname: '/nodes',
               artist: {
-                deezerId: search.deezerId,
-                name: search.name
+                deezerId: artist.id,
+                name: artist.name
               }
-            }}>{search.name}</Link></p>
-        </div>
+            }}>
+            <div className="level">
+              <div className="level-item suggestions">
+                <p title={artist.name} id={artist.id}>{artist.name}</p>
+              </div>
+            </div>
+          </Link>
+        }) : null
+        }
+      </div>
+    </div>
+    <div className="container" id="recentsearches">
+      <h1>Recent Searches</h1>
+      <div className="recentsearchescontainer">
+        {recentSearches ? recentSearches.map((search, i) => {
+          return <div key={i}>
+            <p><Link
+              to={{
+                pathname: '/nodes',
+                artist: {
+                  deezerId: search.deezerId,
+                  name: search.name
+                }
+              }}>{search.name}</Link></p>
+          </div>
 
-      }) : null}
+        }) : null}
+      </div>
     </div>
   </section >
 }

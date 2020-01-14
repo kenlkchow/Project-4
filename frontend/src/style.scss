@@ -5,6 +5,10 @@
 
 // Set your brand colors
 $light-grey: rgba(242, 242, 242, 0.3);
+$node-brown: rgba(239, 192, 80, 0.3);
+$node-red: rgba(221, 65, 36, 0.3);
+$node-green: rgba(68, 184, 172, 0.3);
+$off-white: #f9f9f9;
 
 
 // Update Bulma's global variables
@@ -23,9 +27,6 @@ $input-placeholder-color: $light-grey;
 @import "../../node_modules/bulma/sass/components/navbar.sass";
 @import "../../node_modules/bulma/sass/layout/hero.sass";
 @import "../../node_modules/bulma/sass/layout/section.sass";
-
-
-
 
 
 
@@ -83,7 +84,7 @@ html, body {
   width: 130px;
   margin: 0px;
   padding: 50px 0;
-  background: rgba(239, 192, 80, 0.3);
+  background: $node-brown;
   border-radius: 35%;
   opacity: 0.6;
   transition: 0.5s;
@@ -104,7 +105,7 @@ html, body {
   height: 350px;
   width: 350px;
   font-size: 22px;
-  background: rgba(68, 184, 172, 0.3);
+  background: $node-green;
   border-radius: 35%;
   transition: 0.3s;
   opacity: 0.9;
@@ -127,7 +128,7 @@ html, body {
   text-align: center;
   padding: 85px 0;
   font-size: 20px;
-  background: rgba(221, 65, 36, 0.3);
+  background: $node-red;
   border-radius: 35%;
   transition: 0.3s;
   opacity: 0.6;
@@ -227,16 +228,63 @@ img {
 #search-section{
   padding-left: 175px;
   padding-right: 175px;
+  padding-top: 100px;
 }
 
 
 
 #searchbar{
-  border-width: 3px;
+  border-width: 1px;
   border-style: dashed;
   border-color: lightgray;
-  background: rgba(239, 192, 80, 0.3);
+  background: $node-brown;
   border-radius: 0.5em;
   color: white;
-  $input-placeholder-color: white;
+}
+
+.suggestions{
+  color: white;
+}
+.suggestions:hover{
+  opacity: 1;
+  background: $light-grey;
+}
+
+.suggestions-container{
+  background: $node-green;
+  border-radius: 0.5em;
+  border-color: lightgray;
+  border-style: dashed;
+  border-width: 1px;
+  height: 32vh;
+}
+
+.placeholder{
+  height: 32vh;
+}
+
+#recentsearches{
+  text-align: center;
+  width: 40%;
+  margin-top: 15vh;
+  font-size: 1.1em;
+   h1{
+    color: $off-white;
+    font-weight: 550;
+  }
+  .recentsearchescontainer{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    div{
+      width: 33%;      
+      a{
+        color: $light-grey;
+        font-weight: 475;
+      }
+      a:hover{
+        color: $off-white;
+      }
+    }
+  }
 }
