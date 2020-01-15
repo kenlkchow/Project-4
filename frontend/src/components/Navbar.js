@@ -1,10 +1,15 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
+import Auth from '../lib/authMethods'
 
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 
 
-const Navbar = () => {
+const Navbar = (props) => {
 
+  function handleLogout() {
+    Auth.logout()
+    props.history.push('/')
+  }
 
   return <div className="navbar navbar-color">
     <div className="navbar-brand">
@@ -17,17 +22,21 @@ const Navbar = () => {
       </Link>
     </div>
     <div className="navbar-end">
-      <div className="navbar-item">
+      {Auth.isAuthorized() && <div className="navbar-item">
         <Link to="/profile">Profile</Link>
-      </div>
-      <div className="navbar-item">
+      </div>}
+      {!Auth.isAuthorized() && <div className="navbar-item">
         <Link to="/login">Login</Link>
-      </div>
-      <div className="navbar-item">
+      </div>}
+      {!Auth.isAuthorized() && <div className="navbar-item">
         <Link to="/register">Register</Link>
-      </div>
+      </div>}
+      {Auth.isAuthorized() && <div className="navbar-item">
+        <a className="navbar-item" onClick={() => handleLogout()}>Logout</a>
+      </div>}
     </div>
+    
   </div>
 }
 
-export default Navbar
+export default withRouter(Navbar)

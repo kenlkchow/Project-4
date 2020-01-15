@@ -25,6 +25,7 @@ const Profile = () => {
   const [loading, setLoading] = useState(false)
   const [modal, setModal] = useState(false)
 
+  // GRAB USER'S ARTISTS
   useEffect(() => {
     axios.get('/api/profile', {
       headers: { Authorization: `Bearer ${Auth.getToken()}` }
@@ -34,6 +35,7 @@ const Profile = () => {
       })
   }, [])
 
+  // CALL DEEZER API FOR ARTIST INFO
   function getDeezerArtist(name) {
     axios.get(`https://cors-anywhere.herokuapp.com/api.deezer.com/search/artist/?q=${name}&index=0&limit=1`)
     // axios.get(`https://cors-anywhere.herokuapp.com/api.deezer.com/artist/${name}`) This is for when we have valid deezerID's in the database
@@ -49,6 +51,7 @@ const Profile = () => {
       })
   }
 
+  // CALL SKIDDLE API FOR GIG INFO
   function getSkiddleGigs(name) {
     axios.get(`https://cors-anywhere.herokuapp.com/www.skiddle.com/api/v1/artists/?api_key=${API_KEY}&name=${name}`)
       .then(resp => {
@@ -64,7 +67,6 @@ const Profile = () => {
             const newData = []
 
             for (let i = 0; i < cities.length; i++) {
-              // cities[i] = cities[i].trim()
               newData.push({ [cities[i]]: [] })
               for (let j = 0; j < data.length; j++) {
                 if (cities[i] === data[j].venue.town) {
@@ -78,6 +80,7 @@ const Profile = () => {
       })
   }
 
+  // HANDLE CLICK FOR INDIVIDUAL ARTIST INFO
   function handleClick(e) {
     const artist = e.target.title
     getDeezerArtist(artist)
@@ -86,6 +89,7 @@ const Profile = () => {
     getSkiddleGigs(artist)
   }
 
+  // GIG MODAL
   function toggleModal() {
     setModal(!modal)
   }
@@ -95,6 +99,7 @@ const Profile = () => {
     toggleModal()
   }
 
+  // ACCESS USER LOCATION
   function getLocation() {
     if (navigator.geolocation) {
       setLoading(true)
@@ -112,12 +117,14 @@ const Profile = () => {
   return <section className="section" id="profile">
     <div className="container">
       <div className="columns">
+        {/* The users artists's column */}
         <div className="column" id="artists">
           <div className="title has-text-centered has-text-white">Artists</div>
           {artists.map((artist, i) => {
-            return <div key={i} title={artist.name} onClick={handleClick} className="artist has-text-white">{artist.name}</div>
+            return <div key={i} title={artist.name} onClick={handleClick} className="artist">{artist.name}</div>
           })}
         </div>
+        {/* Single artist column */}
         <div className="column" id="singleArtist">
           <div className="title has-text-centered">Selected Artist</div>
           <div className="subtitle has-text-centered">{singleArtist.name}</div>
@@ -130,10 +137,13 @@ const Profile = () => {
             </div>
           })}
         </div>
+        {/* Gig column */}
         <div className="column" id="gigs">
           <p className="title has-text-centered has-text-white">Gigs</p>
           <div className={!loading ? 'button is-small' : 'button is-small is-loading'} onClick={getLocation}>How far away?</div>
+
           {gigs.map((city, i) => {
+            // Maps out the location followed by each gig associated with that location
             return <Collapsible key={i} trigger={city[cities[i]][0].venue.town}>
               {city[cities[i]].map((gig, j) => {
                 return <div key={j}>
