@@ -83,8 +83,8 @@ const Nodes = (props) => {
 
   return <div>
 
-    {console.log(props.location.artist)}
-    {console.log(thirdNodeData)}
+    {/* {console.log(props.location.artist)} */}
+    {/* {console.log(thirdNodeData)} */}
     <div>
       <div className="container-div">
         <div className="third-node">
