@@ -6,11 +6,7 @@ import moment from 'moment'
 import Auth from '../lib/authMethods'
 import distance from '../lib/distanceMethod'
 import GigModal from '../components/GigModal'
-<<<<<<< HEAD
 import deleteIcon from './images/deleteIcon.png'
-=======
-import deleteIcon from './images/delete-icon.jpg'
->>>>>>> development
 
 const initialArtists = [{ artists: {} }]
 const initialSingleArtist = { id: '', name: '', picture_medium: '' }
