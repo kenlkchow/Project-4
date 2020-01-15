@@ -22,7 +22,8 @@ const App = () => (
       transition={Flip}
       autoClose={5000}
       toastClassName="toast"
-      progressClassName="toast-progress"
+      hideProgressBar
+      // progressClassName="toast-progress"
     />
     <Switch>
 

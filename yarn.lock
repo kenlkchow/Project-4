@@ -6310,6 +6310,11 @@ react-dom@^16.12.0, react-dom@^16.6.3:
     prop-types "^15.6.2"
     scheduler "^0.18.0"
 
+react-fade-in@^0.1.7:
+  version "0.1.7"
+  resolved "https://registry.yarnpkg.com/react-fade-in/-/react-fade-in-0.1.7.tgz#b68686b85071375f4f9cbee85ad96ffb6adf6bce"
+  integrity sha512-g8U5RxvwN4hDKIR0INQS3ZwR56fBmFS/cXw5JngDVpGobr58tzX8aA+crX+zUpiisMWiY7kCyUu0750HNXb+tg==
+
 react-h5-audio-player@^2.2.1:
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/react-h5-audio-player/-/react-h5-audio-player-2.2.1.tgz#cceda552eff13fe92b15b621dfd712fefd07a575"
