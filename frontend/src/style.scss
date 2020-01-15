@@ -14,7 +14,10 @@ $node-brown: rgba(239, 192, 80, 0.3);
 $node-red: rgba(221, 65, 36, 0.3);
 $node-green: rgba(68, 184, 172, 0.3);
 $off-white: #f9f9f9;
-
+$rhap_theme-color: #868686 !default;
+$rhap_background-color: #fff !default;
+$rhap_bar-color: #e4e4e4 !default;
+$rhap_time-color: #333 !default;
 
 // Update Bulma's global variables
 
@@ -46,7 +49,6 @@ html, body {
   font-family: 'Cabin Sketch', cursive;
   text-shadow: 1px 1px #303030;
   box-shadow: 5px 10px;
-  
 }
 
 .navbar-color {
@@ -61,48 +63,134 @@ html, body {
   color: rgba(211, 211, 211, 1)
 }
 
-#profile {
-  #root {
+
+#root {
     height: 100%;
     #profile {
       height: 100%;
-      max-height: 100%;
+      max-height: 100%; 
+      .container {
+        height: 100%;
+        .columns {
+          height: 100%;
+          margin-bottom: 20px;
+          #artists {
+            .artist {
+              color: white;
+              cursor: pointer;
+              transition: all .2s ease-in-out;
+              -webkit-animation: fadein 1s;
+              -moz-animation: fadein 1s;
+              -ms-animation: fadein 1s;
+              -o-animation: fadein 1s;
+              animation: fadein 1s;
+            }
+            .artist:hover {
+              border-right: 10px solid white;
+            }
+          }
+          #singleArtist {
+            border-radius: 1em 1em 0em 0em;
+            height: 100%;
+            background-color: #FDFDD2;
+            display: flex;
+            flex-direction: column;
+            #head {
+              display: flex;
+              position: relative;
+              justify-content: center;
+              .title {
+                color: #303030;
+              }
+              figure {
+                position: absolute;
+                right: 0;
+                top: 5%;
+                cursor: pointer;
+                transition: all .2s ease-in-out;
+                -webkit-animation: fadein 1s;
+                -moz-animation: fadein 1s;
+                -ms-animation: fadein 1s;
+                -o-animation: fadein 1s;
+                animation: fadein 1s;
+              }
+            }
+
+            #topTrack {
+              font-size: x-large;
+              text-align: center;
+              padding-top: 10px;
+              padding-bottom: 5px;
+            }
+            
+            .noArtistText {
+              margin: auto;
+              transition: all .2s ease-in-out;
+              -webkit-animation: fadein 1s;
+              -moz-animation: fadein 1s;
+              -ms-animation: fadein 1s;
+              -o-animation: fadein 1s;
+              animation: fadein 1s;
+            }
+            #image-wrapper {
+              margin: 0 auto;
+              display: flex;
+              justify-content: center;
+              transition: all .2s ease-in-out;
+              -webkit-animation: fadein 1s;
+              -moz-animation: fadein 1s;
+              -ms-animation: fadein 1s;
+              -o-animation: fadein 1s;
+              animation: fadein 1s;
+            }
+          }
+          #gigs {
+            display: flex;
+            flex-direction: column;
+            .subtitle {
+              margin: auto;
+            }
+            .Collapsible {
+              text-align: center;
+              color: white;
+              margin-top: 5px;
+              font-size: x-large;
+              font-weight: bold;
+              cursor: pointer;
+              div {
+                p {
+                  font-size: medium;
+                  font-weight: 300;
+                }
+              }
+              transition: all .2s ease-in-out;
+              -webkit-animation: fadein 1s;
+              -moz-animation: fadein 1s;
+              -ms-animation: fadein 1s;
+                -o-animation: fadein 1s;
+                  animation: fadein 1s;
+            }
+            .title {
+              margin-bottom: 10px;
+            }
+            .button {
+              background-color: rgba(0,0,0,0);
+              border-radius: 1.5em;
+              border: 4px solid white;
+              color: white;
+              font-weight: bold;
+            }
+            .button:hover {
+              background-color: white;
+              border: 4px solid white;
+              color: #303030;
+            }
+          }
+        }
+      }      
     }
   }
-}
 
-#artists {
-  border-radius: 1em 0em 0em 1em;
-  border: 2px solid #FDFDD2;
-  .artist {
-    color: white;
-    cursor: pointer;
-  }
-  .artist:hover {
-    border-right: 10px solid white;
-  }
-}
-
-#singleArtist {
-  background-color: #FDFDD2;
-  #head {
-    display: flex;
-    position: relative;
-    justify-content: center;
-    .title {
-      color: #303030;
-    }
-    figure {
-      position: absolute;
-      right: 0;
-      top: 5%;
-    }
-  }
-}
-
-#gigs {
-  border-radius: 0em 1em 1em 0em;
-}
 
 .second-node {
 
@@ -236,46 +324,7 @@ html, body {
   border-color: lightgray;
 }
 
-#gigs {
-  border: 2px solid #FDFDD2;
-  display: flex;
-  flex-direction: column;
-  .Collapsible {
-    text-align: center;
-    color: white;
-    margin-top: 5px;
-    font-size: x-large;
-    font-weight: bold;
-    cursor: pointer;
-    div {
-      p {
-        font-size: medium;
-        font-weight: 300;
-      }
-    }
-    transition: all .2s ease-in-out;
-    -webkit-animation: fadein 1s;
-    -moz-animation: fadein 1s;
-    -ms-animation: fadein 1s;
-      -o-animation: fadein 1s;
-        animation: fadein 1s;
-  }
-  .title {
-    margin-bottom: 10px;
-  }
-  .button {
-    background-color: rgba(0,0,0,0);
-    border-radius: 1.5em;
-    border: 4px solid white;
-    color: white;
-    font-weight: bold;
-  }
-  .button:hover {
-    background-color: white;
-    border: 4px solid white;
-    color: #303030;
-  }
-}
+
 
 #modal-full {
   transition: all .2s ease-in-out;
@@ -296,21 +345,11 @@ html, body {
   border-bottom: 2px solid #FDFDD2;
 }
 
-@keyframes fadein {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-  }
-  @-webkit-keyframes fadein {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-  }
 #search-section{
   padding-left: 175px;
   padding-right: 175px;
   padding-top: 100px;
 }
-
-
 
 #searchbar{
   border-width: 1px;
@@ -458,3 +497,13 @@ html, body {
   color: $off-white;
   
 }
+
+@keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+  }
+@-webkit-keyframes fadein {
+from { opacity: 0; }
+to   { opacity: 1; }
+}
+
