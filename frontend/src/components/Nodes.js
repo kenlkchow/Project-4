@@ -1,8 +1,11 @@
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useState, useEffect, useCallback, useMemo } from 'react'
 import axios from 'axios'
 import 'bulma'
 import ReactAudioPlayer from 'react-simple-audio-player'
 import chroma from 'chroma-js'
+import arrowImage from './images/pngwave (1).png'
+import downArrow from './images/toppng.com-white-drop-down-arrow-423x265.png'
+import plus from './images/kisspng-portable-network-graphics-computer-icons-plus-sign-plus-sign-transparent-background-1-background-ch-5bb15dc9ee3db2.3309821015383505379758.png'
 
 
 const Nodes = (props) => {
@@ -58,6 +61,30 @@ const Nodes = (props) => {
       })
   }, [])
 
+  const refreshSuggestions = useCallback(() => {
+
+    axios.get(`https://cors-anywhere.herokuapp.com/api.deezer.com/artist/${mainNode.id}/related`)
+      .then(res => {
+        console.log(mainNode)
+        const suggest = res.data.data.slice(4, 8)
+        setSecondaryNodes(suggest)
+
+      })
+      .catch(err => console.log(err))
+  }, [...secondaryNodes])
+
+  const refreshSuggestionsUp = useCallback(() => {
+
+    axios.get(`https://cors-anywhere.herokuapp.com/api.deezer.com/artist/${mainNode.id}/related`)
+      .then(res => {
+        console.log(mainNode)
+        const suggest = res.data.data.slice(0, 4)
+        setSecondaryNodes(suggest)
+
+      })
+      .catch(err => console.log(err))
+  }, [...secondaryNodes])
+
 
   useEffect(() => {
     thirdNode.array.push(props.location.artist.deezerId)
@@ -81,19 +108,23 @@ const Nodes = (props) => {
       .catch(err => console.log(err))
   }, [])
 
+  if (topTracks.length === 0) {
+    return <div>Loading...</div>
+  }
+
   return <div>
 
-    {console.log(props.location.artist)}
+    {console.log(mainNode.id)}
     {console.log(thirdNodeData)}
     <div>
-      <div className="container-div">
-        <div className="third-node">
+      <div className="container-div fade-in">
+        <div className="third-node ">
           <div onClick={handleClick} id={thirdNodeData.id}> {thirdNodeData.name}</div>
         </div>
-
+        <img className="arrow-2" src={arrowImage} />
         <div>
           <div className="main-node main-node-container">
-            <div className="artist-pic">
+            <div>
               <img className="artist-pic" src={mainNode.picture} />
             </div>
             <div>
@@ -108,8 +139,13 @@ const Nodes = (props) => {
 
               })}
             </div>
+            <img className="plus-sign" src={plus} />
           </div>
+
+          
         </div>
+        <img className="arrow-1" src={arrowImage} />
+
 
         <div >
           <div className="second-node-container">
@@ -117,6 +153,8 @@ const Nodes = (props) => {
               return <div key={i} id={artist.id} className="second-node " onClick={handleClick}> {artist.name}</div>
 
             })}
+            <img className="down-arrow2" src={downArrow} onClick={refreshSuggestionsUp} />
+            <img className="down-arrow" src={downArrow} onClick={refreshSuggestions} />
           </div>
 
         </div>
