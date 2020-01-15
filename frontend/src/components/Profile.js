@@ -6,6 +6,7 @@ import moment from 'moment'
 import Auth from '../lib/authMethods'
 import distance from '../lib/distanceMethod'
 import GigModal from '../components/GigModal'
+import deleteIcon from './images/deleteIcon.png'
 
 const initialArtists = [{ artists: {} }]
 const initialSingleArtist = { id: '', name: '', picture_medium: '' }
@@ -26,7 +27,7 @@ const Profile = () => {
   const [loading, setLoading] = useState(false)
   const [modal, setModal] = useState(false)
 
-  // GRAB USER'S ARTISTS
+  // GRAB USER'S ARTISTS, LISTENS FOR CHANGES IN SINGLEA ARTIST IN ORDER TO RENDER THE ARTIST LIST AGAIN
   useEffect(() => {
     axios.get('/api/profile', {
       headers: { Authorization: `Bearer ${Auth.getToken()}` }
@@ -93,7 +94,6 @@ const Profile = () => {
 
   // DELETE SINGLE ARTIST FUNCTION
   function  deleteArtist() {
-    console.log(dbID)
     axios.delete(`/api/artists/${dbID}`, {
       headers: { Authorization: `Bearer ${Auth.getToken()}` }
     })
@@ -143,10 +143,12 @@ const Profile = () => {
         </div>
         {/* Single artist column */}
         <div className="column" id="singleArtist">
-          {/* <div className="title has-text-centered">Selected Artist</div> */}
           <div id="head">
             <p className="title">Selected Artist</p>
-            <p className="delete-button" onClick={deleteArtist}>Delete</p>
+            {singleArtist.id ? <figure className="image is-24x24">
+              <img src={deleteIcon} id="delete-button" onClick={deleteArtist}/>
+            </figure> : null}
+            {console.log(singleArtist.id)}
           </div>
           <div className="subtitle has-text-centered">{singleArtist.name}</div>
           <img src={singleArtist.picture_medium} alt="" />
