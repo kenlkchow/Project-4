@@ -1,12 +1,29 @@
+// @import url('https://fonts.googleapis.com/css?family=Gugi&display=swap');
+
+// @import url('https://fonts.googleapis.com/css?family=Rock+Salt&display=swap');
+
+@import url('https://fonts.googleapis.com/css?family=Cabin+Sketch&display=swap');
+
+
 html, body {
   height: 100%;
   background-image: url("https://wallpapercave.com/wp/wp2732962.jpg") ;
+  // background: #585858;
+  font-weight: bold;
+  // font-family: 'Gugi', cursive;
+  // font-family: 'Rock Salt', cursive;
+  font-family: 'Cabin Sketch', cursive;
+  text-shadow: 1px 1px #303030;
+  box-shadow: 5px 10px;
   
-
 }
 
 .navbar-color {
-  background-image: url("https://wallpapercave.com/wp/wp2732962.jpg");  // opacity: 0;
+  background-image: url("https://wallpapercave.com/wp/wp2732962.jpg") ;
+  // background: #585858;
+  border-bottom-width: 3px;
+  border-bottom-style: double;
+  border-bottom-color: rgba(211, 211, 211, 0.5);
 }
 
 .logo {
@@ -46,39 +63,49 @@ html, body {
 
 .second-node {
 
-  border-width: 3px;
-  border-style: dashed;
-  border-color: lightgray;
+  // border-width: 3px;
+  // border-style: dashed;
+  // border-color: lightgray;
   height: 130px;
   width: 130px;
   margin: 0px;
-  padding: 50px 0;
-  background: rgba(239, 192, 80, 0.3);
+  padding: 55px 0;
+  font-size: 15px;
+  // background: rgba(255,255,0, 0.3);
+  background: rgba(253,253, 210, 0.5);
   border-radius: 35%;
   opacity: 0.6;
-  transition: 0.5s;
+  transition: 0.4s;
+  color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.7), 0 6px 20px 0 rgba(0, 0, 0, 0.3)
 }
 
 .second-node:hover {
-  opacity: 1;
-  height: 160px;
-  width: 160px;
-  padding: 67px 0;
+  // opacity: 0.8;
+  height: 140px;
+  width: 140px;
+  padding: 60px 0;
+  // font-size: 18px;
+  background: rgba(153, 153, 101, 0.7)
 }
 
 .main-node {
 
-  border-width: 4px;
-  border-style: dashed;
-  border-color: lightgray;
+  // border-width: 4px;
+  // border-style: dashed;
+  // border-color: lightgray;
   height: 350px;
   width: 350px;
-  font-size: 22px;
-  background: rgba(68, 184, 172, 0.3);
+  font-size: 30px;
+  // background: rgba(68, 184, 172, 0.3);
+  background: rgba(253,253, 210, 0.6);
   border-radius: 35%;
   transition: 0.3s;
   opacity: 0.9;
   transition: 0.5s;
+  // color: 		#DCDCDC;
+  color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.7), 0 6px 20px 0 rgba(0, 0, 0, 0.3)
 }
 
 .main-node:hover {
@@ -88,27 +115,31 @@ html, body {
 
 .third-node {
 
-  border-width: 3px;
-  border-style: dashed;
-  border-color: lightgray;
+  // border-width: 3px;
+  // border-style: dashed;
+  // border-color: lightgray;
   height: 200px;
   width: 200px;
   margin: 0px;
   text-align: center;
   padding: 85px 0;
-  font-size: 20px;
-  background: rgba(221, 65, 36, 0.3);
+  font-size: 23px;
+  // background: rgba(221, 65, 36, 0.3);
+  background: rgba(253,253, 210, 0.5);
   border-radius: 35%;
-  transition: 0.3s;
+  transition: 0.15s;
   opacity: 0.6;
+  color: white;
   transition: 0.5s;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.7), 0 6px 20px 0 rgba(0, 0, 0, 0.3)
 }
 
 .third-node:hover {
-  opacity: 1;
+  opacity: 0.8;
   width: 220px;
   height: 220px;
-  padding: 90px 0;
+  padding: 95px 0;
+  background: rgba(153, 153, 101, 0.7)
 
 }
 
@@ -117,10 +148,12 @@ html, body {
   display: flex;
   flex-direction: row;
   width: 100%;
-  height: 100%;
-  justify-content: space-evenly;
+  height: 780px;
+  justify-content: space-around;
   align-items: center;
+  
   background-image: url("https://wallpapercave.com/wp/wp2732962.jpg");
+  // background: #585858;
   color: lightgray
 }
 
@@ -130,6 +163,7 @@ html, body {
   height: 600px;
   justify-content: space-between;
   text-align: center;
+  margin-right: 50px;
   // align-items: center;
 }
 
@@ -147,20 +181,19 @@ html, body {
   justify-content: space-evenly;
   align-content: center;
   text-align: center;
+  // margin-right: 70px;
 }
 
 .artist-pic {
   border-radius: 35%;
-}
-
-img {
   border-width: 2px;
+  height: 130px;
+  width: 130px;
   border-style: dashed;
   border-color: lightgray;
 }
-  border: 2px solid #FDFDD2;
-  display: flex;
-  flex-direction: column;
+
+
   .Collapsible {
     border-top: 1px solid white;
     color: white;
@@ -190,4 +223,81 @@ img {
     border: 4px solid #FFB448;
     color: #FFB448;
   }
-}
+
+  .arrow-1 {
+    position: absolute;
+    width: 10%;
+    height: 20%;
+    right: 340px;
+  }
+
+  .arrow-2 {
+    position: absolute;
+    width: 10%;
+    height: 20%;
+    left: 360px;
+    transform: scaleX(-1)
+  }
+
+  @keyframes fadeIn {
+    from {
+       opacity: 0;
+    }
+    to {
+       opacity: 1;
+    }
+ }
+ 
+ .fade-in {
+   opacity: 0;
+   animation: fadeIn ease-in 1;
+   animation-fill-mode: forwards;
+   animation-duration: 4s;
+ }
+ 
+ .down-arrow {
+  position: absolute;
+  width: 2.5%;
+  height: 2.5%;
+  top: 770px;
+  right: 216px;
+  transition: 0.3s;
+  opacity: 0.4;
+  
+ }
+
+ .down-arrow:hover {
+  // position: absolute;
+  width: 2.8%;
+  height: 2.8%;
+  // top: 770px;
+  right: 214px
+ }
+
+ .down-arrow2 {
+  position: absolute;
+  width: 2.5%;
+  height: 2.5%;
+  top: 100px;
+  right: 216px;
+  transition: 0.3s;
+  opacity: 0.4;
+  transform: scaleY(-1);
+  
+ }
+
+ .down-arrow2:hover {
+  // position: absolute;
+  width: 2.8%;
+  height: 2.8%;
+  // top: 770px;
+  right: 214px
+ }
+ 
+ .plus-sign {
+  position: absolute;
+  width: 2.5%;
+  height: 2.5%;
+  top: 100px;
+  right: 216px;
+ }
