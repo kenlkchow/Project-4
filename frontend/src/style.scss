@@ -69,6 +69,16 @@ html, body {
 
 #singleArtist {
   background-color: #FDFDD2;
+  #head {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    .delete-button {
+      position: absolute;
+      right: 0;
+      top: 5%;
+    }
+  }
 }
 
 #gigs {
