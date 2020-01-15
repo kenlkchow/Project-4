@@ -1,9 +1,13 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { HashRouter, Switch, Route } from 'react-router-dom'
+<<<<<<< HEAD
+import { ToastContainer } from 'react-toastify'
+=======
 import { ToastContainer, Flip } from 'react-toastify'
 
 import 'react-toastify/dist/ReactToastify.minimal.css'
+>>>>>>> development
 
 import 'bulma'
 import './style.scss'
@@ -25,6 +29,7 @@ const App = () => (
       progressClassName="toast-progress"
     />
     <Switch>
+
       <Route exact path="/" component={Home} />
       <Route exact path="/register" component={Register} />
       <Route exact path="/login" component={Login} />

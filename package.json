@@ -40,6 +40,7 @@
     "react-hot-loader": "^4.12.18",
     "react-modular-audio-player": "^1.2.0",
     "react-mt-svg-lines": "^0.9.1",
+    "react-popup": "^0.10.0",
     "react-router-dom": "^5.1.2",
     "react-simple-audio-player": "^2.0.0",
     "react-spring": "^8.0.27",

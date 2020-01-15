@@ -14,7 +14,10 @@ $node-brown: rgba(239, 192, 80, 0.3);
 $node-red: rgba(221, 65, 36, 0.3);
 $node-green: rgba(68, 184, 172, 0.3);
 $off-white: #f9f9f9;
-
+$rhap_theme-color: #868686 !default;
+$rhap_background-color: #fff !default;
+$rhap_bar-color: #e4e4e4 !default;
+$rhap_time-color: #333 !default;
 
 // Update Bulma's global variables
 
@@ -46,7 +49,6 @@ html, body {
   font-family: 'Cabin Sketch', cursive;
   text-shadow: 1px 1px #303030;
   box-shadow: 5px 10px;
-  
 }
 
 .navbar-color {
@@ -61,48 +63,134 @@ html, body {
   color: rgba(211, 211, 211, 1)
 }
 
-#profile {
-  #root {
+
+#root {
     height: 100%;
     #profile {
       height: 100%;
-      max-height: 100%;
+      max-height: 100%; 
+      .container {
+        height: 100%;
+        .columns {
+          height: 100%;
+          margin-bottom: 20px;
+          #artists {
+            .artist {
+              color: white;
+              cursor: pointer;
+              transition: all .2s ease-in-out;
+              -webkit-animation: fadein 1s;
+              -moz-animation: fadein 1s;
+              -ms-animation: fadein 1s;
+              -o-animation: fadein 1s;
+              animation: fadein 1s;
+            }
+            .artist:hover {
+              border-right: 10px solid white;
+            }
+          }
+          #singleArtist {
+            border-radius: 1em 1em 0em 0em;
+            height: 100%;
+            background-color: #FDFDD2;
+            display: flex;
+            flex-direction: column;
+            #head {
+              display: flex;
+              position: relative;
+              justify-content: center;
+              .title {
+                color: #303030;
+              }
+              figure {
+                position: absolute;
+                right: 0;
+                top: 5%;
+                cursor: pointer;
+                transition: all .2s ease-in-out;
+                -webkit-animation: fadein 1s;
+                -moz-animation: fadein 1s;
+                -ms-animation: fadein 1s;
+                -o-animation: fadein 1s;
+                animation: fadein 1s;
+              }
+            }
+
+            #topTrack {
+              font-size: x-large;
+              text-align: center;
+              padding-top: 10px;
+              padding-bottom: 5px;
+            }
+            
+            .noArtistText {
+              margin: auto;
+              transition: all .2s ease-in-out;
+              -webkit-animation: fadein 1s;
+              -moz-animation: fadein 1s;
+              -ms-animation: fadein 1s;
+              -o-animation: fadein 1s;
+              animation: fadein 1s;
+            }
+            #image-wrapper {
+              margin: 0 auto;
+              display: flex;
+              justify-content: center;
+              transition: all .2s ease-in-out;
+              -webkit-animation: fadein 1s;
+              -moz-animation: fadein 1s;
+              -ms-animation: fadein 1s;
+              -o-animation: fadein 1s;
+              animation: fadein 1s;
+            }
+          }
+          #gigs {
+            display: flex;
+            flex-direction: column;
+            .subtitle {
+              margin: auto;
+            }
+            .Collapsible {
+              text-align: center;
+              color: white;
+              margin-top: 5px;
+              font-size: x-large;
+              font-weight: bold;
+              cursor: pointer;
+              div {
+                p {
+                  font-size: medium;
+                  font-weight: 300;
+                }
+              }
+              transition: all .2s ease-in-out;
+              -webkit-animation: fadein 1s;
+              -moz-animation: fadein 1s;
+              -ms-animation: fadein 1s;
+                -o-animation: fadein 1s;
+                  animation: fadein 1s;
+            }
+            .title {
+              margin-bottom: 10px;
+            }
+            .button {
+              background-color: rgba(0,0,0,0);
+              border-radius: 1.5em;
+              border: 4px solid white;
+              color: white;
+              font-weight: bold;
+            }
+            .button:hover {
+              background-color: white;
+              border: 4px solid white;
+              color: #303030;
+            }
+          }
+        }
+      }      
     }
   }
-}
 
-#artists {
-  border-radius: 1em 0em 0em 1em;
-  border: 2px solid #FDFDD2;
-  .artist {
-    color: white;
-    cursor: pointer;
-  }
-  .artist:hover {
-    border-right: 10px solid white;
-  }
-}
-
-#singleArtist {
-  background-color: #FDFDD2;
-  #head {
-    display: flex;
-    position: relative;
-    justify-content: center;
-    .title {
-      color: #303030;
-    }
-    figure {
-      position: absolute;
-      right: 0;
-      top: 5%;
-    }
-  }
-}
-
-#gigs {
-  border-radius: 0em 1em 1em 0em;
-}
 
 .second-node {
 
@@ -129,7 +217,8 @@ html, body {
   width: 140px;
   padding: 60px 0;
   // font-size: 18px;
-  background: rgba(153, 153, 101, 0.7)
+  background: rgba(153, 153, 101, 0.7);
+  cursor: pointer;
 }
 
 .main-node {
@@ -152,7 +241,8 @@ html, body {
 }
 
 .main-node:hover {
-  opacity: 1
+  opacity: 1;
+  cursor: pointer;
 
 }
 
@@ -182,7 +272,8 @@ html, body {
   width: 220px;
   height: 220px;
   padding: 95px 0;
-  background: rgba(153, 153, 101, 0.7)
+  background: rgba(153, 153, 101, 0.7);
+  cursor: pointer;
 
 }
 
@@ -229,53 +320,15 @@ html, body {
 
 .artist-pic {
   border-radius: 35%;
-  border-width: 2px;
+  border-width: 1px;
   height: 130px;
   width: 130px;
-  border-style: dashed;
-  border-color: lightgray;
+  border-style: double;
+  border-color:#606060;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.7), 0 6px 20px 0 rgba(0, 0, 0, 0.3)
 }
 
-#gigs {
-  border: 2px solid #FDFDD2;
-  display: flex;
-  flex-direction: column;
-  .Collapsible {
-    text-align: center;
-    color: white;
-    margin-top: 5px;
-    font-size: x-large;
-    font-weight: bold;
-    cursor: pointer;
-    div {
-      p {
-        font-size: medium;
-        font-weight: 300;
-      }
-    }
-    transition: all .2s ease-in-out;
-    -webkit-animation: fadein 1s;
-    -moz-animation: fadein 1s;
-    -ms-animation: fadein 1s;
-      -o-animation: fadein 1s;
-        animation: fadein 1s;
-  }
-  .title {
-    margin-bottom: 10px;
-  }
-  .button {
-    background-color: rgba(0,0,0,0);
-    border-radius: 1.5em;
-    border: 4px solid white;
-    color: white;
-    font-weight: bold;
-  }
-  .button:hover {
-    background-color: white;
-    border: 4px solid white;
-    color: #303030;
-  }
-}
+
 
 #modal-full {
   transition: all .2s ease-in-out;
@@ -296,21 +349,11 @@ html, body {
   border-bottom: 2px solid #FDFDD2;
 }
 
-@keyframes fadein {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-  }
-  @-webkit-keyframes fadein {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-  }
 #search-section{
   padding-left: 175px;
   padding-right: 175px;
   padding-top: 100px;
 }
-
-
 
 #searchbar{
   border-width: 1px;
@@ -396,7 +439,7 @@ html, body {
    opacity: 0;
    animation: fadeIn ease-in 1;
    animation-fill-mode: forwards;
-   animation-duration: 4s;
+   animation-duration: 1.5s;
  }
  
  .down-arrow {
@@ -415,14 +458,16 @@ html, body {
   width: 2.8%;
   height: 2.8%;
   // top: 770px;
-  right: 214px
+  right: 214px;
+  opacity: 0.9;
+  cursor: pointer;
  }
 
  .down-arrow2 {
   position: absolute;
   width: 2.5%;
   height: 2.5%;
-  top: 100px;
+  top: 110px;
   right: 216px;
   transition: 0.3s;
   opacity: 0.4;
@@ -435,26 +480,111 @@ html, body {
   width: 2.8%;
   height: 2.8%;
   // top: 770px;
-  right: 214px
+  right: 214px;
+  opacity: 0.9;
+  cursor: pointer;
  }
  
  .plus-sign {
   position: absolute;
-  opacity: 0.8;
-  width: 1.5%;
-  height: 2.5%;
-  bottom: 160px;
-  left: 720px;
+  opacity: 0.65;
+  width: 3.5%;
+  height: 6%;
+  bottom: 110px;
+  left: 704px;
   transition: 0.3s;
  }
 
  .plus-sign:hover {
-  width: 2.2%;
-  height: 3.5%;
-  left: 715px;
-  bottom: 155px;
+  opacity: 0.8;
+  width: 4.66%;
+  height: 8%;
+  left: 697px;
+  bottom: 105px;
+  cursor: pointer;
  }
 #login{
   color: $off-white;
 }
 
+.border {
+  height: 100px;
+  width: 200px;
+  background: linear-gradient(90deg, white 50%, transparent 50%), linear-gradient(90deg,white 50%, transparent 50%), linear-gradient(0deg, white 50%, transparent 50%), linear-gradient(0deg, white 50%, transparent 50%);
+  background-repeat: repeat-x, repeat-x, repeat-y, repeat-y;
+  background-size: 15px 4px, 15px 4px, 4px 15px, 4px 15px;
+  background-position: 0px 0px, 200px 100px, 0px 100px, 200px 0px;
+  padding: 10px;
+  animation: border-dance 4s infinite linear;
+}
+@keyframes border-dance {
+  0% {
+    background-position: 0px 0px, 300px 116px, 0px 150px, 216px 0px;
+  }
+  100% {
+    background-position: 300px 0px, 0px 116px, 0px 0px, 216px 150px;
+  }
+}
+
+.aflow {
+  color: rgb(253,253, 210);
+  font-size: 80px;
+  position: absolute;
+  top: 120px;
+  left: 130px;
+  opacity: 0.15;
+  text-shadow: 1px 1px #303030;
+}
+
+.lds-ripple {
+  margin: 0 auto;
+  // display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.lds-ripple div {
+  position: absolute;
+  border: 4px solid #fff;
+  opacity: 1;
+  border-radius: 50%;
+  animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+.lds-ripple div:nth-child(2) {
+  animation-delay: -0.5s;
+}
+@keyframes lds-ripple {
+  0% {
+    top: 36px;
+    left: 36px;
+    width: 0;
+    height: 0;
+    opacity: 1;
+  }
+  100% {
+    top: 0px;
+    left: 0px;
+    width: 72px;
+    height: 72px;
+    opacity: 0;
+  }
+}
+
+.loading-container {
+  
+  display: flex;
+  // flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%
+}
+
+@keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+  }
+@-webkit-keyframes fadein {
+from { opacity: 0; }
+to   { opacity: 1; }
+}
