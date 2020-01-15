@@ -377,7 +377,7 @@ html, body {
 }
 
 .suggestions-container{
-  background: $node-green;
+  background: $node-red;
   border-radius: 0.5em;
   border-color: lightgray;
   border-style: dashed;
@@ -592,3 +592,6 @@ from { opacity: 0; }
 to   { opacity: 1; }
 }
 
+.Toastify__toast-body { 
+  font-family: 'Cabin Sketch', cursive; 
+}
