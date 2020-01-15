@@ -6,6 +6,7 @@ import moment from 'moment'
 import Auth from '../lib/authMethods'
 import distance from '../lib/distanceMethod'
 import GigModal from '../components/GigModal'
+import deleteIcon from './images/delete-icon.jpg'
 
 const initialArtists = [{ artists: {} }]
 const initialSingleArtist = { id: '', name: '', picture_medium: '' }
@@ -17,6 +18,7 @@ const Profile = () => {
 
   const [artists, setArtists] = useState(initialArtists)
   const [singleArtist, setSingleArtist] = useState(initialSingleArtist)
+  const [dbID, setDbID] = useState('')
   const [songPreviews, setSongPreviews] = useState(initialSongPreviews)
   const [gigs, setGigs] = useState(initialGigs)
   const [singleGig, setSingleGig] = useState({})
@@ -33,7 +35,7 @@ const Profile = () => {
       .then(resp => {
         setArtists(resp.data.artists)
       })
-  }, [])
+  }, [singleArtist])
 
   // CALL DEEZER API FOR ARTIST INFO
   function getDeezerArtist(name) {
@@ -41,7 +43,7 @@ const Profile = () => {
     // axios.get(`https://cors-anywhere.herokuapp.com/api.deezer.com/artist/${name}`) This is for when we have valid deezerID's in the database
 
       .then(resp => {
-        // resp.data when its just an id required
+        // resp.data when its just a deezerid required
         setSingleArtist(resp.data.data[0])
         const artistId = resp.data.data[0].id
         axios.get(`https://cors-anywhere.herokuapp.com/api.deezer.com/artist/${artistId}/top`)
@@ -80,13 +82,28 @@ const Profile = () => {
       })
   }
 
-  // HANDLE CLICK FOR INDIVIDUAL ARTIST INFO
+  // HANDLE CLICK FOR INDIVIDUAL ARTIST INFO, ALSO APPEND OUR OWN DATABASE ID IN ORDER TO DELETE THAT SPECIFIC ARTIST
   function handleClick(e) {
     const artist = e.target.title
     getDeezerArtist(artist)
     setCities([])
     setGigs([])
     getSkiddleGigs(artist)
+    setDbID(e.target.id)
+  }
+
+  // DELETE SINGLE ARTIST FUNCTION
+  function  deleteArtist() {
+    console.log(dbID)
+    axios.delete(`/api/artists/${dbID}`, {
+      headers: { Authorization: `Bearer ${Auth.getToken()}` }
+    })
+    // Set all populated fields to empty 
+      .then(resp => {
+        setSingleArtist(initialSingleArtist)
+        setGigs(initialGigs)
+        setSongPreviews(initialSongPreviews)
+      })
   }
 
   // GIG MODAL
@@ -121,12 +138,17 @@ const Profile = () => {
         <div className="column" id="artists">
           <div className="title has-text-centered has-text-white">Artists</div>
           {artists.map((artist, i) => {
-            return <div key={i} title={artist.name} onClick={handleClick} className="artist">{artist.name}</div>
+            // title will become artist.deezerId and anoth
+            return <div key={i} title={artist.name} onClick={handleClick} className="artist" id={artist.id}>{artist.name}</div>
           })}
         </div>
         {/* Single artist column */}
         <div className="column" id="singleArtist">
-          <div className="title has-text-centered">Selected Artist</div>
+          {/* <div className="title has-text-centered">Selected Artist</div> */}
+          <div id="head">
+            <p className="title">Selected Artist</p>
+            <img src={deleteIcon} className="delete-button" onClick={deleteArtist} />
+          </div>
           <div className="subtitle has-text-centered">{singleArtist.name}</div>
           <img src={singleArtist.picture_medium} alt="" />
           {songPreviews.length === 0 ? null : <p className="subtitle">Top tracks</p>}
@@ -148,7 +170,9 @@ const Profile = () => {
               {city[cities[i]].map((gig, j) => {
                 return <div key={j}>
                   <p onClick={() => handleGigClick(gig)} className="has-text-white">
-                    {gig.venue.name} - {moment(gig.date).format('MMM Do YYYY')} {userPosition.latitude ? ` - ${distance(userPosition.latitude, userPosition.longitude, gig.venue.latitude, gig.venue.longitude)} miles` : 
+                    {gig.venue.name} - {moment(gig.date).format('MMM Do YYYY')} 
+                    {userPosition.latitude ? ` - ${distance(userPosition.latitude, userPosition.longitude, gig.venue.latitude, gig.venue.longitude)} miles` 
+                      : 
                       null
                     }
                   </p>

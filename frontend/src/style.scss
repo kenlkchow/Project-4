@@ -3,6 +3,36 @@
 // @import url('https://fonts.googleapis.com/css?family=Rock+Salt&display=swap');
 
 @import url('https://fonts.googleapis.com/css?family=Cabin+Sketch&display=swap');
+// @charset "utf-8";
+
+// Import a Google Font
+@import url('https://fonts.googleapis.com/css?family=Nunito:400,700');
+
+// Set your brand colors
+$light-grey: rgba(242, 242, 242, 0.3);
+$node-brown: rgba(239, 192, 80, 0.3);
+$node-red: rgba(221, 65, 36, 0.3);
+$node-green: rgba(68, 184, 172, 0.3);
+$off-white: #f9f9f9;
+
+
+// Update Bulma's global variables
+
+
+// Update some of Bulma's component variables
+$input-placeholder-color: $light-grey;
+
+// Import only what you need from Bulma
+@import "../../node_modules/bulma/sass/utilities/_all.sass";
+@import "../../node_modules/bulma/sass/base/_all.sass";
+@import "../../node_modules/bulma/sass/elements/button.sass";
+@import "../../node_modules/bulma/sass/elements/container.sass";
+@import "../../node_modules/bulma/sass/elements/title.sass";
+@import "../../node_modules/bulma/sass/form/_all.sass";
+@import "../../node_modules/bulma/sass/components/navbar.sass";
+@import "../../node_modules/bulma/sass/layout/hero.sass";
+@import "../../node_modules/bulma/sass/layout/section.sass";
+
 
 
 html, body {
@@ -54,6 +84,16 @@ html, body {
 
 #singleArtist {
   background-color: #FDFDD2;
+  #head {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    .delete-button {
+      position: absolute;
+      right: 0;
+      top: 5%;
+    }
+  }
 }
 
 #gigs {
@@ -268,61 +308,61 @@ html, body {
 
 
 
-// #searchbar{
-//   border-width: 1px;
-//   border-style: dashed;
-//   border-color: lightgray;
-//   background: $node-brown;
-//   border-radius: 0.5em;
-//   color: white;
-// }
+#searchbar{
+  border-width: 1px;
+  border-style: dashed;
+  border-color: lightgray;
+  background: $node-brown;
+  border-radius: 0.5em;
+  color: white;
+}
 
 .suggestions{
   color: white;
 }
-// .suggestions:hover{
-//   opacity: 1;
-//   background: $light-grey;
-// }
+.suggestions:hover{
+  opacity: 1;
+  background: $light-grey;
+}
 
-// .suggestions-container{
-//   background: $node-green;
-//   border-radius: 0.5em;
-//   border-color: lightgray;
-//   border-style: dashed;
-//   border-width: 1px;
-//   height: 32vh;
-// }
+.suggestions-container{
+  background: $node-green;
+  border-radius: 0.5em;
+  border-color: lightgray;
+  border-style: dashed;
+  border-width: 1px;
+  height: 32vh;
+}
 
 .placeholder{
   height: 32vh;
 }
 
-// #recentsearches{
-//   text-align: center;
-//   width: 40%;
-//   margin-top: 15vh;
-//   font-size: 1.1em;
-//    h1{
-//     color: $off-white;
-//     font-weight: 550;
-//   }
-//   .recentsearchescontainer{
-//     display: flex;
-//     flex-wrap: wrap;
-//     justify-content: space-around;
-//     div{
-//       width: 33%;      
-//       a{
-//         color: $light-grey;
-//         font-weight: 475;
-//       }
-//       a:hover{
-//         color: $off-white;
-//       }
-//     }
-//   }
-// }
+#recentsearches{
+  text-align: center;
+  width: 40%;
+  margin-top: 15vh;
+  font-size: 1.1em;
+   h1{
+    color: $off-white;
+    font-weight: 550;
+  }
+  .recentsearchescontainer{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    div{
+      width: 33%;      
+      a{
+        color: $light-grey;
+        font-weight: 475;
+      }
+      a:hover{
+        color: $off-white;
+      }
+    }
+  }
+}
 
   .arrow-1 {
     position: absolute;
