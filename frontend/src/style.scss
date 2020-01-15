@@ -1,8 +1,41 @@
+<<<<<<< HEAD
 // @import url('https://fonts.googleapis.com/css?family=Gugi&display=swap');
 
 // @import url('https://fonts.googleapis.com/css?family=Rock+Salt&display=swap');
 
 @import url('https://fonts.googleapis.com/css?family=Cabin+Sketch&display=swap');
+=======
+@charset "utf-8";
+
+// Import a Google Font
+@import url('https://fonts.googleapis.com/css?family=Nunito:400,700');
+
+// Set your brand colors
+$light-grey: rgba(242, 242, 242, 0.3);
+$node-brown: rgba(239, 192, 80, 0.3);
+$node-red: rgba(221, 65, 36, 0.3);
+$node-green: rgba(68, 184, 172, 0.3);
+$off-white: #f9f9f9;
+
+
+// Update Bulma's global variables
+
+
+// Update some of Bulma's component variables
+$input-placeholder-color: $light-grey;
+
+// Import only what you need from Bulma
+@import "../../node_modules/bulma/sass/utilities/_all.sass";
+@import "../../node_modules/bulma/sass/base/_all.sass";
+@import "../../node_modules/bulma/sass/elements/button.sass";
+@import "../../node_modules/bulma/sass/elements/container.sass";
+@import "../../node_modules/bulma/sass/elements/title.sass";
+@import "../../node_modules/bulma/sass/form/_all.sass";
+@import "../../node_modules/bulma/sass/components/navbar.sass";
+@import "../../node_modules/bulma/sass/layout/hero.sass";
+@import "../../node_modules/bulma/sass/layout/section.sass";
+
+>>>>>>> development
 
 
 html, body {
@@ -31,24 +64,24 @@ html, body {
 }
 
 #profile {
-  background-color: #FFDDAA;
   #root {
     height: 100%;
     #profile {
-      background-color: #303030;
       height: 100%;
       max-height: 100%;
-      // overflow: hidden;
     }
   }
 }
 
 #artists {
-  // background-color: #FFB448;
   border-radius: 1em 0em 0em 1em;
   border: 2px solid #FDFDD2;
   .artist {
+    color: white;
     cursor: pointer;
+  }
+  .artist:hover {
+    border-right: 10px solid white;
   }
 }
 
@@ -57,7 +90,6 @@ html, body {
 }
 
 #gigs {
-  // background-color: #FFB448;
   border-radius: 0em 1em 1em 0em;
 }
 
@@ -69,10 +101,15 @@ html, body {
   height: 130px;
   width: 130px;
   margin: 0px;
+<<<<<<< HEAD
   padding: 55px 0;
   font-size: 15px;
   // background: rgba(255,255,0, 0.3);
   background: rgba(253,253, 210, 0.5);
+=======
+  padding: 50px 0;
+  background: $node-brown;
+>>>>>>> development
   border-radius: 35%;
   opacity: 0.6;
   transition: 0.4s;
@@ -96,9 +133,14 @@ html, body {
   // border-color: lightgray;
   height: 350px;
   width: 350px;
+<<<<<<< HEAD
   font-size: 30px;
   // background: rgba(68, 184, 172, 0.3);
   background: rgba(253,253, 210, 0.6);
+=======
+  font-size: 22px;
+  background: $node-green;
+>>>>>>> development
   border-radius: 35%;
   transition: 0.3s;
   opacity: 0.9;
@@ -123,9 +165,14 @@ html, body {
   margin: 0px;
   text-align: center;
   padding: 85px 0;
+<<<<<<< HEAD
   font-size: 23px;
   // background: rgba(221, 65, 36, 0.3);
   background: rgba(253,253, 210, 0.5);
+=======
+  font-size: 20px;
+  background: $node-red;
+>>>>>>> development
   border-radius: 35%;
   transition: 0.15s;
   opacity: 0.6;
@@ -193,12 +240,19 @@ html, body {
   border-color: lightgray;
 }
 
+<<<<<<< HEAD
 
+=======
+#gigs {
+  border: 2px solid #FDFDD2;
+  display: flex;
+  flex-direction: column;
+>>>>>>> development
   .Collapsible {
-    border-top: 1px solid white;
+    text-align: center;
     color: white;
     margin-top: 5px;
-    font-size: large;
+    font-size: x-large;
     font-weight: bold;
     cursor: pointer;
     div {
@@ -207,12 +261,18 @@ html, body {
         font-weight: 300;
       }
     }
+    transition: all .2s ease-in-out;
+    -webkit-animation: fadein 1s;
+    -moz-animation: fadein 1s;
+    -ms-animation: fadein 1s;
+      -o-animation: fadein 1s;
+        animation: fadein 1s;
   }
   .title {
     margin-bottom: 10px;
   }
   .button {
-    background-color: #303030;
+    background-color: rgba(0,0,0,0);
     border-radius: 1.5em;
     border: 4px solid white;
     color: white;
@@ -220,8 +280,99 @@ html, body {
   }
   .button:hover {
     background-color: white;
-    border: 4px solid #FFB448;
-    color: #FFB448;
+    border: 4px solid white;
+    color: #303030;
+  }
+}
+
+#modal-full {
+  transition: all .2s ease-in-out;
+  -webkit-animation: fadein 1s;
+  -moz-animation: fadein 1s;
+   -ms-animation: fadein 1s;
+    -o-animation: fadein 1s;
+       animation: fadein 1s;
+}
+
+#modal-head {
+  background-color: #303030;
+  border: 3px solid white;
+}
+
+#modal-body {
+  background-color: #303030;
+  border-bottom: 2px solid #FDFDD2;
+}
+
+@keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+  }
+  @-webkit-keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+  }
+#search-section{
+  padding-left: 175px;
+  padding-right: 175px;
+  padding-top: 100px;
+}
+
+
+
+#searchbar{
+  border-width: 1px;
+  border-style: dashed;
+  border-color: lightgray;
+  background: $node-brown;
+  border-radius: 0.5em;
+  color: white;
+}
+
+.suggestions{
+  color: white;
+}
+.suggestions:hover{
+  opacity: 1;
+  background: $light-grey;
+}
+
+.suggestions-container{
+  background: $node-green;
+  border-radius: 0.5em;
+  border-color: lightgray;
+  border-style: dashed;
+  border-width: 1px;
+  height: 32vh;
+}
+
+.placeholder{
+  height: 32vh;
+}
+
+#recentsearches{
+  text-align: center;
+  width: 40%;
+  margin-top: 15vh;
+  font-size: 1.1em;
+   h1{
+    color: $off-white;
+    font-weight: 550;
+  }
+  .recentsearchescontainer{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    div{
+      width: 33%;      
+      a{
+        color: $light-grey;
+        font-weight: 475;
+      }
+      a:hover{
+        color: $off-white;
+      }
+    }
   }
 
   .arrow-1 {

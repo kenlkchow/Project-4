@@ -14,10 +14,10 @@ const GigModal = ({ toggleModal, gig, setModal }) => {
 
   return <div className="modal is-active">
     <div className="modal-background" onClick={toggleModal}></div>
-    <div className="modal-card">
-      <header className="modal-card-head has-text-left">
-        <p className="modal-card-title">{gig.venue.name} - {gig.venue.town} <br />
-          <p className="modal-subtitle is-size-6">{moment(gig.data).format('MMMM Do YYYY, h:mma')}</p>
+    <div className="modal-card" id="modal-full">
+      <header className="modal-card-head has-text-left has" id="modal-head">
+        <p className="modal-card-title has-text-white">{gig.venue.name} - {gig.venue.town} <br />
+          <p className="modal-subtitle is-size-6">{moment(gig.date).format('MMMM Do YYYY')}</p>
         </p>
       </header>
       <section className="modal-card-body">
@@ -30,8 +30,6 @@ const GigModal = ({ toggleModal, gig, setModal }) => {
         <p className="">Venue contact information</p>
         <p>{gig.venue.phone}</p>
       </section>
-      <footer className="modal-card-foot">
-      </footer>
     </div>
     <button className="modal-close is-large" aria-label="close" onClick={toggleModal}></button>
   </div>
