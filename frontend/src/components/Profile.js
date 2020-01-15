@@ -6,6 +6,7 @@ import moment from 'moment'
 import Auth from '../lib/authMethods'
 import distance from '../lib/distanceMethod'
 import GigModal from '../components/GigModal'
+import deleteIcon from './images/delete-icon.jpg'
 
 const initialArtists = [{ artists: {} }]
 const initialSingleArtist = { id: '', name: '', picture_medium: '' }
@@ -146,7 +147,7 @@ const Profile = () => {
           {/* <div className="title has-text-centered">Selected Artist</div> */}
           <div id="head">
             <p className="title">Selected Artist</p>
-            <p className="delete-button" onClick={deleteArtist}>Delete</p>
+            <img src={deleteIcon} className="delete-button" onClick={deleteArtist} />
           </div>
           <div className="subtitle has-text-centered">{singleArtist.name}</div>
           <img src={singleArtist.picture_medium} alt="" />
