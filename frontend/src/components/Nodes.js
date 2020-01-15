@@ -5,7 +5,7 @@ import ReactAudioPlayer from 'react-simple-audio-player'
 import chroma from 'chroma-js'
 import arrowImage from './images/pngwave (1).png'
 import downArrow from './images/toppng.com-white-drop-down-arrow-423x265.png'
-import plus from './images/kisspng-portable-network-graphics-computer-icons-plus-sign-plus-sign-transparent-background-1-background-ch-5bb15dc9ee3db2.3309821015383505379758.png'
+import plus from './images/iconfinder_favourite512x512_197598.png'
 
 
 const Nodes = (props) => {
@@ -28,6 +28,14 @@ const Nodes = (props) => {
     array: []
 
   })
+
+  // const addToFavourites = useCallback(() => {
+  //   axios.post('/api/artists')
+  //     .then(req => {
+        
+  //     })
+  //     .catch(err => console.log(err))
+  // }, [])
 
   const [thirdNodeData, setThirdNodeData] = useState({})
 
@@ -139,10 +147,12 @@ const Nodes = (props) => {
 
               })}
             </div>
-            <img className="plus-sign" src={plus} />
+            <img className="plus-sign" src={plus} 
+            // onClick={addToFavourites} 
+            />
           </div>
 
-          
+
         </div>
         <img className="arrow-1" src={arrowImage} />
 

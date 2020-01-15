@@ -21,13 +21,8 @@ const Navbar = (props) => {
         </div>
       </Link>
     </div>
-<<<<<<< HEAD
-    <div className="navbar-start">
-      <div className="navbar-item">
-=======
     <div className="navbar-end">
       {Auth.isAuthorized() && <div className="navbar-item">
->>>>>>> development
         <Link to="/profile">Profile</Link>
       </div>}
       {!Auth.isAuthorized() && <div className="navbar-item">
