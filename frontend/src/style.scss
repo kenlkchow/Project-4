@@ -217,7 +217,8 @@ html, body {
   width: 140px;
   padding: 60px 0;
   // font-size: 18px;
-  background: rgba(153, 153, 101, 0.7)
+  background: rgba(153, 153, 101, 0.7);
+  cursor: pointer;
 }
 
 .main-node {
@@ -240,7 +241,8 @@ html, body {
 }
 
 .main-node:hover {
-  opacity: 1
+  opacity: 1;
+  cursor: pointer;
 
 }
 
@@ -270,7 +272,8 @@ html, body {
   width: 220px;
   height: 220px;
   padding: 95px 0;
-  background: rgba(153, 153, 101, 0.7)
+  background: rgba(153, 153, 101, 0.7);
+  cursor: pointer;
 
 }
 
@@ -317,11 +320,12 @@ html, body {
 
 .artist-pic {
   border-radius: 35%;
-  border-width: 2px;
+  border-width: 1px;
   height: 130px;
   width: 130px;
-  border-style: dashed;
-  border-color: lightgray;
+  border-style: double;
+  border-color:#606060;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.7), 0 6px 20px 0 rgba(0, 0, 0, 0.3)
 }
 
 
@@ -435,7 +439,7 @@ html, body {
    opacity: 0;
    animation: fadeIn ease-in 1;
    animation-fill-mode: forwards;
-   animation-duration: 4s;
+   animation-duration: 1.5s;
  }
  
  .down-arrow {
@@ -454,14 +458,16 @@ html, body {
   width: 2.8%;
   height: 2.8%;
   // top: 770px;
-  right: 214px
+  right: 214px;
+  opacity: 0.9;
+  cursor: pointer;
  }
 
  .down-arrow2 {
   position: absolute;
   width: 2.5%;
   height: 2.5%;
-  top: 100px;
+  top: 110px;
   right: 216px;
   transition: 0.3s;
   opacity: 0.4;
@@ -474,28 +480,104 @@ html, body {
   width: 2.8%;
   height: 2.8%;
   // top: 770px;
-  right: 214px
+  right: 214px;
+  opacity: 0.9;
+  cursor: pointer;
  }
  
  .plus-sign {
   position: absolute;
-  opacity: 0.8;
-  width: 1.5%;
-  height: 2.5%;
-  bottom: 160px;
-  left: 720px;
+  opacity: 0.65;
+  width: 3.5%;
+  height: 6%;
+  bottom: 110px;
+  left: 704px;
   transition: 0.3s;
  }
 
  .plus-sign:hover {
-  width: 2.2%;
-  height: 3.5%;
-  left: 715px;
-  bottom: 155px;
+  opacity: 0.8;
+  width: 4.66%;
+  height: 8%;
+  left: 697px;
+  bottom: 105px;
+  cursor: pointer;
  }
 #login{
   color: $off-white;
+}
+
+.border {
+  height: 100px;
+  width: 200px;
+  background: linear-gradient(90deg, white 50%, transparent 50%), linear-gradient(90deg,white 50%, transparent 50%), linear-gradient(0deg, white 50%, transparent 50%), linear-gradient(0deg, white 50%, transparent 50%);
+  background-repeat: repeat-x, repeat-x, repeat-y, repeat-y;
+  background-size: 15px 4px, 15px 4px, 4px 15px, 4px 15px;
+  background-position: 0px 0px, 200px 100px, 0px 100px, 200px 0px;
+  padding: 10px;
+  animation: border-dance 4s infinite linear;
+}
+@keyframes border-dance {
+  0% {
+    background-position: 0px 0px, 300px 116px, 0px 150px, 216px 0px;
+  }
+  100% {
+    background-position: 300px 0px, 0px 116px, 0px 0px, 216px 150px;
+  }
+}
+
+.aflow {
+  color: rgb(253,253, 210);
+  font-size: 80px;
+  position: absolute;
+  top: 120px;
+  left: 130px;
+  opacity: 0.15;
+  text-shadow: 1px 1px #303030;
+}
+
+.lds-ripple {
+  margin: 0 auto;
+  // display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.lds-ripple div {
+  position: absolute;
+  border: 4px solid #fff;
+  opacity: 1;
+  border-radius: 50%;
+  animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+.lds-ripple div:nth-child(2) {
+  animation-delay: -0.5s;
+}
+@keyframes lds-ripple {
+  0% {
+    top: 36px;
+    left: 36px;
+    width: 0;
+    height: 0;
+    opacity: 1;
+  }
+  100% {
+    top: 0px;
+    left: 0px;
+    width: 72px;
+    height: 72px;
+    opacity: 0;
+  }
+}
+
+.loading-container {
   
+  display: flex;
+  // flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%
 }
 
 @keyframes fadein {
@@ -506,4 +588,3 @@ html, body {
 from { opacity: 0; }
 to   { opacity: 1; }
 }
-

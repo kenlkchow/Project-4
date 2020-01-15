@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useMemo } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import axios from 'axios'
 import 'bulma'
 import ReactAudioPlayer from 'react-simple-audio-player'
@@ -7,6 +7,7 @@ import arrowImage from './images/pngwave (1).png'
 import downArrow from './images/toppng.com-white-drop-down-arrow-423x265.png'
 import plus from './images/iconfinder_favourite512x512_197598.png'
 import Auth from '../lib/authMethods'
+import { toast } from 'react-toastify'
 
 const Nodes = (props) => {
 
@@ -30,6 +31,7 @@ const Nodes = (props) => {
   })
 
   const addToFavourites = useCallback(() => {
+    alert(`${mainNode.name} added to favourites`)
     axios({
       method: 'post',
       url: '/api/artists',
@@ -45,7 +47,7 @@ const Nodes = (props) => {
       .catch(err => console.log(err))
   }, [{ ...mainNode }])
 
-  {console.log(mainNode.id, mainNode.name)}
+  { console.log(mainNode.id, mainNode.name) }
 
 
   const [thirdNodeData, setThirdNodeData] = useState({})
@@ -128,7 +130,7 @@ const Nodes = (props) => {
   }, [])
 
   if (topTracks.length === 0) {
-    return <div>Loading...</div>
+    return <div className="loading-container"><div className="lds-ripple fade-in"><div></div><div></div></div></div>
   }
 
   return <div>
@@ -137,7 +139,7 @@ const Nodes = (props) => {
     {console.log(thirdNodeData)}
     {/* {console.log(props.location.artist)} */}
     {/* {console.log(thirdNodeData)} */}
-    
+
     <div>
       <div className="container-div fade-in">
         <div className="third-node ">
@@ -145,6 +147,7 @@ const Nodes = (props) => {
         </div>
         <img className="arrow-2" src={arrowImage} />
         <div>
+          <div className="aflow">artist_Flow</div>
           <div className="main-node main-node-container">
             <div>
               <img className="artist-pic" src={mainNode.picture} />
@@ -158,35 +161,26 @@ const Nodes = (props) => {
                   url={track.preview} colorScale={colorScale}
 
                 /></div>
-
               })}
             </div>
             <img className="plus-sign" src={plus}
               onClick={addToFavourites}
             />
           </div>
-
-
         </div>
         <img className="arrow-1" src={arrowImage} />
-
-
         <div >
-          <div className="second-node-container">
+          <div className="second-node-container fade-in">
             {secondaryNodes.map((artist, i) => {
-              return <div key={i} id={artist.id} className="second-node " onClick={handleClick}> {artist.name}</div>
-
+              return <div key={i} id={artist.id} className="second-node" onClick={handleClick}> {artist.name}</div>
             })}
             <img className="down-arrow2" src={downArrow} onClick={refreshSuggestionsUp} />
             <img className="down-arrow" src={downArrow} onClick={refreshSuggestions} />
           </div>
-
         </div>
-
       </div>
     </div>
   </div>
-
 }
 
 export default Nodes
