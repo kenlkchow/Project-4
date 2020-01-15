@@ -8,7 +8,6 @@ const Navbar = (props) => {
 
   function handleLogout() {
     Auth.logout()
-    props.history.push('/')
   }
 
   return <div className="navbar navbar-color">
@@ -31,12 +30,19 @@ const Navbar = (props) => {
       {!Auth.isAuthorized() && <div className="navbar-item">
         <Link to="/register">Register</Link>
       </div>}
-      {Auth.isAuthorized() && <div className="navbar-item">
-        <a className="navbar-item" onClick={() => handleLogout()}>Logout</a>
-      </div>}
+      {Auth.isAuthorized() &&
+        <div className="navbar-item">
+          <Link
+            onClick={handleLogout}
+            to={{ pathname: '/' }}>
+            Logout
+          </Link>
+        </div>}
     </div>
-    
-  </div>
+
+  </div >
 }
 
 export default withRouter(Navbar)
+
+// <a className="navbar-item" onClick={() => handleLogout()}>Logout</a>}
