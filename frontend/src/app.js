@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { HashRouter, Switch, Route } from 'react-router-dom'
+import { ToastContainer } from 'react-toastify'
 
 import 'bulma'
 import './style.scss'
@@ -16,6 +17,7 @@ const App = () => (
   <HashRouter>
     <Navbar />
     <Switch>
+
       <Route exact path="/" component={Home} />
       <Route exact path="/register" component={Register} />
       <Route exact path="/login" component={Login} />
