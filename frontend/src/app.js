@@ -14,6 +14,7 @@ import Login from './components/Login'
 import Nodes from './components/Nodes'
 import Home from './components/Home'
 import Profile from './components/Profile'
+import PrivateRoute from './lib/privateRoutes'
 
 const App = () => (
   <HashRouter>
@@ -22,7 +23,8 @@ const App = () => (
       transition={Flip}
       autoClose={5000}
       toastClassName="toast"
-      progressClassName="toast-progress"
+      hideProgressBar
+      // progressClassName="toast-progress"
     />
     <Switch>
 
@@ -30,8 +32,7 @@ const App = () => (
       <Route exact path="/register" component={Register} />
       <Route exact path="/login" component={Login} />
       <Route exact path="/nodes" component={Nodes} />
-
-      <Route exact path="/profile" component={Profile} />
+      <PrivateRoute exact path="/profile" component={Profile} />
     </Switch>
   </HashRouter>
 )
