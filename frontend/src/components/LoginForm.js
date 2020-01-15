@@ -3,8 +3,8 @@ import Avatar from '@material-ui/core/Avatar'
 import Button from '@material-ui/core/Button'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import TextField from '@material-ui/core/TextField'
-import FormControlLabel from '@material-ui/core/FormControlLabel'
-import Checkbox from '@material-ui/core/Checkbox'
+// import FormControlLabel from '@material-ui/core/FormControlLabel'
+// import Checkbox from '@material-ui/core/Checkbox'
 import Link from '@material-ui/core/Link'
 import Grid from '@material-ui/core/Grid'
 import Box from '@material-ui/core/Box'
@@ -17,32 +17,58 @@ function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>{' '}
+      AJK
+      {' '}
       {new Date().getFullYear()}
       {'.'}
     </Typography>
   )
 }
 
+
 const useStyles = makeStyles(theme => ({
   paper: {
     marginTop: theme.spacing(8),
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center'
+    alignItems: 'center',
+    color: 'white'
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main
+    backgroundColor: theme.palette.secondary.main,
+    color: 'white'
   },
   form: {
     width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing(1)
+    marginTop: theme.spacing(1),
+    color: 'white'
   },
   submit: {
     margin: theme.spacing(3, 0, 2)
+  },
+  textbox: {
+    color: 'white',
+    borderColor: 'white'
+  },
+  
+  notchedOutline: {},
+
+  cssOutlinedInput: {
+    '&$cssFocused $notchedOutline': {
+      borderColor: `${theme.palette.primary.main} !important`
+    }
+  },
+
+  cssLabel: {
+    color: 'white'
+  },
+
+  focused: {},
+  outlinedInput: {
+    '&$focused $notchedOutline': {
+      border: '1px solid white'
+    }
   }
 }))
 
@@ -73,6 +99,18 @@ export default function SignIn({ handleChange, handleSubmit }) {
             name="username"
             autoComplete="username"
             autoFocus
+            InputLabelProps={{
+              classes: {
+                root: classes.cssLabel,
+                focused: classes.focused
+              }
+            }}
+            InputProps={{
+              className: classes.textbox,
+              root: classes.outlinedInput,
+              focused: classes.focused,
+              notchedOutline: classes.notchedOutline
+            }}
             onChange={handleChange}
           />
           <TextField
@@ -81,10 +119,18 @@ export default function SignIn({ handleChange, handleSubmit }) {
             required
             fullWidth
             name="password"
-            label="Password"
+            label="password"
             type="password"
             id="password"
             autoComplete="current-password"
+            InputLabelProps={{
+              classes: {
+                root: classes.cssLabel
+              }
+            }}
+            InputProps={{
+              className: classes.textbox
+            }}
             onChange={handleChange}
           />
           {/* <FormControlLabel
@@ -101,13 +147,8 @@ export default function SignIn({ handleChange, handleSubmit }) {
             Sign In
           </Button>
           <Grid container>
-            <Grid item xs>
-              <Link href="#" variant="body2">
-                Forgot password?
-              </Link>
-            </Grid>
             <Grid item>
-              <Link href="#" variant="body2">
+              <Link href="/#/register" variant="body2" className={classes.cssLabel}>
                 {'Don\'t have an account? Sign Up'}
               </Link>
             </Grid>

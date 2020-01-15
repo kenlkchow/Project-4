@@ -1,6 +1,8 @@
 import React from 'react'
 import axios from 'axios'
+
 import 'bulma'
+import SignUp from './RegisterForm'
 
 class Register extends React.Component {
   constructor() {
@@ -13,10 +15,13 @@ class Register extends React.Component {
       },
       errors: {}
     }
+    this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
   handleChange(e) {
     const data = { ...this.state.data, [e.target.name]: e.target.value }
     const errors = { ...this.state.errors, [e.target.name]: '' }
+
     this.setState({ data, errors })
   }
   handleSubmit(e) {
@@ -26,64 +31,69 @@ class Register extends React.Component {
       .catch(err => this.setState({ errors: err.response.data.errors }))
   }
   render() {
-    return <section className="section">
-      <div className="container">
-        <div className="title">Register</div>
-        <form className="form" onSubmit={(e) => this.handleSubmit(e)}>
-          <div className="field">
-            <label htmlFor="" className="label">
-              Username
-            </label>
-            <div className="control">
-              <input
-                onChange={(e) => this.handleChange(e)}
-                type="text"
-                name="username"
-                className="input"
-              />
-            </div>
-            {this.state.errors.username && <small className="help is-danger">
-              {this.state.errors.username}
-            </small>}
-          </div>
-          <div className="field">
-            <label htmlFor="" className="label">
-              Password
-            </label>
-            <div className="control">
-              <input
-                onChange={(e) => this.handleChange(e)}
-                type="text"
-                name="password"
-                className="input"
-              />
-            </div>
-            {this.state.errors.password && <small className="help is-danger">
-              {this.state.errors.password}
-            </small>}
-          </div>
-          <div className="field">
-            <label htmlFor="" className="label">
-              Confirm password
-            </label>
-            <div className="control">
-              <input
-                onChange={(e) => this.handleChange(e)}
-                type="text"
-                name="password_confirmation"
-                className="input"
-              />
-            </div>
-            {this.state.errors.passwordConfirmation && <small className="help is-danger">
-              {this.state.errors.passwordConfirmation}
-            </small>}
-          </div>
-          <button className="button is-success">
-            Complete registration
-          </button>
-        </form>
-      </div>
-    </section>
+    console.log(this.state.data)
+    return <SignUp  
+      handleChange={this.handleChange}
+      handleSubmit={this.handleSubmit}
+    />
+    //   return <section className="section">
+    //     <div className="container">
+    //       <div className="title">Register</div>
+    //       <form className="form" onSubmit={(e) => this.handleSubmit(e)}>
+    //         <div className="field">
+    //           <label htmlFor="" className="label">
+    //             Username
+    //           </label>
+    //           <div className="control">
+    //             <input
+    //               onChange={(e) => this.handleChange(e)}
+    //               type="text"
+    //               name="username"
+    //               className="input"
+    //             />
+    //           </div>
+    //           {this.state.errors.username && <small className="help is-danger">
+    //             {this.state.errors.username}
+    //           </small>}
+    //         </div>
+    //         <div className="field">
+    //           <label htmlFor="" className="label">
+    //             Password
+    //           </label>
+    //           <div className="control">
+    //             <input
+    //               onChange={(e) => this.handleChange(e)}
+    //               type="text"
+    //               name="password"
+    //               className="input"
+    //             />
+    //           </div>
+    //           {this.state.errors.password && <small className="help is-danger">
+    //             {this.state.errors.password}
+    //           </small>}
+    //         </div>
+    //         <div className="field">
+    //           <label htmlFor="" className="label">
+    //             Confirm password
+    //           </label>
+    //           <div className="control">
+    //             <input
+    //               onChange={(e) => this.handleChange(e)}
+    //               type="text"
+    //               name="password_confirmation"
+    //               className="input"
+    //             />
+    //           </div>
+    //           {this.state.errors.passwordConfirmation && <small className="help is-danger">
+    //             {this.state.errors.passwordConfirmation}
+    //           </small>}
+    //         </div>
+    //         <button className="button is-success">
+    //           Complete registration
+    //         </button>
+    //       </form>
+    //     </div>
+    //   </section>
   }
 }
 export default Register
