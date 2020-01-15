@@ -21,7 +21,8 @@ $off-white: #f9f9f9;
 
 // Update some of Bulma's component variables
 $input-placeholder-color: $light-grey;
-
+$title-color: $off-white;
+$label-color: $off-white;
 // Import only what you need from Bulma
 @import "../../node_modules/bulma/sass/utilities/_all.sass";
 @import "../../node_modules/bulma/sass/base/_all.sass";
@@ -450,3 +451,7 @@ html, body {
   left: 715px;
   bottom: 155px;
  }
+#login{
+  color: $off-white;
+  
+}
