@@ -135,6 +135,9 @@ const Nodes = (props) => {
 
     {console.log(mainNode.id)}
     {console.log(thirdNodeData)}
+    {/* {console.log(props.location.artist)} */}
+    {/* {console.log(thirdNodeData)} */}
+    
     <div>
       <div className="container-div fade-in">
         <div className="third-node ">

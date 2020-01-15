@@ -32,13 +32,15 @@ const Home = () => {
   // }
 
   function handleSuggestionClick(e) {
-    e.persist()
-    const id = e.target.id
-    const artist = e.target.title
+    // e.persist()
+    const id = e.currentTarget.id
+    const artist = e.currentTarget.title
     axios.post('http://localhost:4000/api/recentsearch', {
       deezerId: id,
       name: artist
     })
+    console.log(id)
+    console.log(artist)
   }
 
 
@@ -57,7 +59,7 @@ const Home = () => {
 
   return <section className="section" id="search-section">
     {/* {console.log(recentSearches)} */}
-    {console.log(!!suggestions)}
+    {console.log(suggestions)}
     {/* {console.log(exportArtist)} */}
     <div className="container">
       <input className="input is-large" id="searchbar" placeholder="Search artists" onChange={handleSearchChange}></input>
@@ -65,6 +67,7 @@ const Home = () => {
         {suggestions ? suggestions.map((artist, i) => {
           return <Link
             key={i}
+            title={artist.name} id={artist.id}
             onClick={handleSuggestionClick}
             to={{
               pathname: '/nodes',
@@ -75,7 +78,7 @@ const Home = () => {
             }}>
             <div className="level">
               <div className="level-item suggestions">
-                <p title={artist.name} id={artist.id}>{artist.name}</p>
+                <p>{artist.name}</p>
               </div>
             </div>
           </Link>
