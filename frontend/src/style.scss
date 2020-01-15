@@ -89,6 +89,9 @@ html, body {
     display: flex;
     position: relative;
     justify-content: center;
+    .title {
+      color: #303030;
+    }
     figure {
       position: absolute;
       right: 0;

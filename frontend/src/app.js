@@ -1,6 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { HashRouter, Switch, Route } from 'react-router-dom'
+import { ToastContainer, Flip } from 'react-toastify'
+
+import 'react-toastify/dist/ReactToastify.minimal.css'
 
 import 'bulma'
 import './style.scss'
@@ -15,6 +18,12 @@ import Profile from './components/Profile'
 const App = () => (
   <HashRouter>
     <Navbar />
+    <ToastContainer 
+      transition={Flip}
+      autoClose={5000}
+      toastClassName="toast"
+      progressClassName="toast-progress"
+    />
     <Switch>
       <Route exact path="/" component={Home} />
       <Route exact path="/register" component={Register} />

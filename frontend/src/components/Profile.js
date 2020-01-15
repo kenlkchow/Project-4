@@ -3,9 +3,13 @@ import ReactAudioPlayer from 'react-audio-player'
 import Collapsible from 'react-collapsible'
 import axios from 'axios'
 import moment from 'moment'
+import { toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+
 import Auth from '../lib/authMethods'
 import distance from '../lib/distanceMethod'
 import GigModal from '../components/GigModal'
+
 import deleteIcon from './images/deleteIcon.png'
 
 const initialArtists = [{ artists: {} }]
@@ -40,10 +44,7 @@ const Profile = () => {
   // CALL DEEZER API FOR ARTIST INFO
   function getDeezerArtist(name) {
     axios.get(`https://cors-anywhere.herokuapp.com/api.deezer.com/search/artist/?q=${name}&index=0&limit=1`)
-    // axios.get(`https://cors-anywhere.herokuapp.com/api.deezer.com/artist/${name}`) This is for when we have valid deezerID's in the database
-
       .then(resp => {
-        // resp.data when its just a deezerid required
         setSingleArtist(resp.data.data[0])
         const artistId = resp.data.data[0].id
         axios.get(`https://cors-anywhere.herokuapp.com/api.deezer.com/artist/${artistId}/top`)
@@ -103,6 +104,8 @@ const Profile = () => {
         setGigs(initialGigs)
         setSongPreviews(initialSongPreviews)
       })
+
+    toast('Artists deleted')
   }
 
   // GIG MODAL
