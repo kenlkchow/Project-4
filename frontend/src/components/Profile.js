@@ -16,7 +16,6 @@ const initialArtists = [{ artists: {} }]
 const initialSingleArtist = { id: '', name: '', picture_medium: '' }
 const initialSongPreviews = []
 const initialGigs = []
-const API_KEY = 'a2deda32b8d4b76c19f38e21b744d580'
 
 const Profile = () => {
 
@@ -57,10 +56,10 @@ const Profile = () => {
 
   // CALL SKIDDLE API FOR GIG INFO
   function getSkiddleGigs(name) {
-    axios.get(`https://cors-anywhere.herokuapp.com/www.skiddle.com/api/v1/artists/?api_key=${API_KEY}&name=${name}`)
+    axios.get(`https://cors-anywhere.herokuapp.com/www.skiddle.com/api/v1/artists/?api_key=${process.env.API_KEY}&name=${name}`)
       .then(resp => {
         const skiddleId = resp.data.results[0].id
-        axios.get(`https://cors-anywhere.herokuapp.com/www.skiddle.com/api/v1/events/search/?api_key=${API_KEY}&a=${skiddleId}&country=GB`)
+        axios.get(`https://cors-anywhere.herokuapp.com/www.skiddle.com/api/v1/events/search/?api_key=${process.env.API_KEY}&a=${skiddleId}&country=GB`)
           .then(resp => {
             const data = resp.data.results
             const test = resp.data.results.map((gig) => {
