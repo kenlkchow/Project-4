@@ -119,8 +119,20 @@ html, body {
             #topTrack {
               font-size: x-large;
               text-align: center;
-              padding-top: 10px;
+              padding-top: 20px;
               padding-bottom: 5px;
+            }
+
+            #tracks-div {
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              transition: all .2s ease-in-out;
+                -webkit-animation: fadein 1s;
+                -moz-animation: fadein 1s;
+                -ms-animation: fadein 1s;
+                -o-animation: fadein 1s;
+                animation: fadein 1s;
             }
             
             .noArtistText {

@@ -163,15 +163,17 @@ const Profile = () => {
 
           {songPreviews.length === 0 ? null : <p className="subtitle" id="topTrack">Top tracks</p>}
 
-          {songPreviews.slice(0,3).map((song, i) => {
-            return <div key={i}>
-              <p>{song.title}</p>
-              <ReactAudioPlayer 
-                src={song.preview} 
-                controls
-              />
-            </div>
-          })}
+          <div id="tracks-div">
+            {songPreviews.slice(0,3).map((song, i) => {
+              return <div key={i}>
+                <p>{song.title}</p>
+                <ReactAudioPlayer 
+                  src={song.preview} 
+                  controls
+                />
+              </div>
+            })}
+          </div>
 
         </div>
         {/* GIG COLUMN */}
