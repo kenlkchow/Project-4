@@ -15,10 +15,13 @@ class Register extends React.Component {
       },
       errors: {}
     }
+    this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
   handleChange(e) {
     const data = { ...this.state.data, [e.target.name]: e.target.value }
     const errors = { ...this.state.errors, [e.target.name]: '' }
+
     this.setState({ data, errors })
   }
   handleSubmit(e) {
@@ -28,7 +31,11 @@ class Register extends React.Component {
       .catch(err => this.setState({ errors: err.response.data.errors }))
   }
   render() {
-    return <SignUp />
+    console.log(this.state.data)
+    return <SignUp  
+      handleChange={this.handleChange}
+      handleSubmit={this.handleSubmit}
+    />
     //   return <section className="section">
     //     <div className="container">
     //       <div className="title">Register</div>

@@ -17,9 +17,8 @@ function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>{' '}
+      AJK
+      {' '}
       {new Date().getFullYear()}
       {'.'}
     </Typography>
@@ -47,6 +46,29 @@ const useStyles = makeStyles(theme => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2)
+  },
+  textbox: {
+    color: 'white',
+    borderColor: 'white'
+  },
+  
+  notchedOutline: {},
+
+  cssOutlinedInput: {
+    '&$cssFocused $notchedOutline': {
+      borderColor: `${theme.palette.primary.main} !important`
+    }
+  },
+
+  cssLabel: {
+    color: 'white'
+  },
+
+  focused: {},
+  outlinedInput: {
+    '&$focused $notchedOutline': {
+      border: '1px solid white'
+    }
   }
 }))
 
@@ -77,6 +99,18 @@ export default function SignIn({ handleChange, handleSubmit }) {
             name="username"
             autoComplete="username"
             autoFocus
+            InputLabelProps={{
+              classes: {
+                root: classes.cssLabel,
+                focused: classes.focused
+              }
+            }}
+            InputProps={{
+              className: classes.textbox,
+              root: classes.outlinedInput,
+              focused: classes.focused,
+              notchedOutline: classes.notchedOutline
+            }}
             onChange={handleChange}
           />
           <TextField
@@ -85,10 +119,18 @@ export default function SignIn({ handleChange, handleSubmit }) {
             required
             fullWidth
             name="password"
-            label="Password"
+            label="password"
             type="password"
             id="password"
             autoComplete="current-password"
+            InputLabelProps={{
+              classes: {
+                root: classes.cssLabel
+              }
+            }}
+            InputProps={{
+              className: classes.textbox
+            }}
             onChange={handleChange}
           />
           {/* <FormControlLabel
@@ -106,7 +148,7 @@ export default function SignIn({ handleChange, handleSubmit }) {
           </Button>
           <Grid container>
             <Grid item>
-              <Link href="/#/register" variant="body2">
+              <Link href="/#/register" variant="body2" className={classes.cssLabel}>
                 {'Don\'t have an account? Sign Up'}
               </Link>
             </Grid>

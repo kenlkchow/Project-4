@@ -17,9 +17,8 @@ function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>{' '}
+      AJK
+      {' '}
       {new Date().getFullYear()}
       {'.'}
     </Typography>
@@ -31,7 +30,8 @@ const useStyles = makeStyles(theme => ({
     marginTop: theme.spacing(8),
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center'
+    alignItems: 'center',
+    color: 'white'
   },
   avatar: {
     margin: theme.spacing(1),
@@ -43,10 +43,33 @@ const useStyles = makeStyles(theme => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2)
+  },
+  textbox: {
+    color: 'white',
+    borderColor: 'white'
+  },
+  
+  notchedOutline: {},
+
+  cssOutlinedInput: {
+    '&$cssFocused $notchedOutline': {
+      borderColor: `${theme.palette.primary.main} !important`
+    }
+  },
+
+  cssLabel: {
+    color: 'white'
+  },
+
+  focused: {},
+  outlinedInput: {
+    '&$focused $notchedOutline': {
+      border: '1px solid white'
+    }
   }
 }))
 
-export default function SignUp() {
+export default function SignUp({ handleChange, handleSubmit }) {
   const classes = useStyles()
 
   return (
@@ -59,40 +82,29 @@ export default function SignUp() {
         <Typography component="h1" variant="h5">
           Sign up
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form}
+          noValidate
+          onSubmit={handleSubmit}
+        >
           <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                autoComplete="fname"
-                name="firstName"
-                variant="outlined"
-                required
-                fullWidth
-                id="firstName"
-                label="First Name"
-                autoFocus
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="lastName"
-                label="Last Name"
-                name="lastName"
-                autoComplete="lname"
-              />
-            </Grid>
             <Grid item xs={12}>
               <TextField
                 variant="outlined"
                 required
                 fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
-                autoComplete="email"
+                id="username"
+                label="username"
+                name="username"
+                autoComplete="username"
+                InputLabelProps={{
+                  classes: {
+                    root: classes.cssLabel
+                  }
+                }}
+                InputProps={{
+                  className: classes.textbox
+                }}
+                onChange={handleChange}
               />
             </Grid>
             <Grid item xs={12}>
@@ -101,16 +113,40 @@ export default function SignUp() {
                 required
                 fullWidth
                 name="password"
-                label="Password"
+                label="password"
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                InputLabelProps={{
+                  classes: {
+                    root: classes.cssLabel
+                  }
+                }}
+                InputProps={{
+                  className: classes.textbox
+                }}
+                onChange={handleChange}
               />
             </Grid>
             <Grid item xs={12}>
-              <FormControlLabel
-                control={<Checkbox value="allowExtraEmails" color="primary" />}
-                label="I want to receive inspiration, marketing promotions and updates via email."
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                name="password_confirmation"
+                label="password confirmation"
+                type="password"
+                id="password_confirmation"
+                autoComplete="current-password"
+                InputLabelProps={{
+                  classes: {
+                    root: classes.cssLabel
+                  }
+                }}
+                InputProps={{
+                  className: classes.textbox
+                }}
+                onChange={handleChange}
               />
             </Grid>
           </Grid>
@@ -125,7 +161,7 @@ export default function SignUp() {
           </Button>
           <Grid container justify="flex-end">
             <Grid item>
-              <Link href="#" variant="body2">
+              <Link href="/#/login" variant="body2" className={classes.cssLabel}>
                 Already have an account? Sign in
               </Link>
             </Grid>
