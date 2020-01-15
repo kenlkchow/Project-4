@@ -722,6 +722,73 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
+"@bit/primefaces.primereact.autocomplete@^3.1.8":
+  version "3.1.8"
+  resolved "https://node.bit.dev/primefaces.primereact.autocomplete/-/primefaces.primereact.autocomplete-3.1.8.tgz#b19f1c5002750806833dcded3070e04e4f7539da"
+  integrity sha1-sZ8cUAJ1CAaDPc3tMHDgTk91Odo=
+  dependencies:
+    "@bit/primefaces.primereact.button" "3.1.8"
+    "@bit/primefaces.primereact.inputtext" "3.1.8"
+    "@bit/primefaces.primereact.tooltip" "3.1.8"
+    "@bit/primefaces.primereact.utils.dom-handler" "3.1.8"
+    "@bit/primefaces.primereact.utils.object-utils" "3.1.8"
+    classnames "^2.2.6"
+    prop-types "^15.6.2"
+    react "^16.6.3"
+    react-dom "^16.6.3"
+
+"@bit/primefaces.primereact.button@3.1.8":
+  version "3.1.8"
+  resolved "https://node.bit.dev/primefaces.primereact.button/-/primefaces.primereact.button-3.1.8.tgz#1a1947f8769b18221dadeba1b261da86ae509631"
+  integrity sha1-GhlH+HabGCIdreuhsmHahq5QljE=
+  dependencies:
+    "@bit/primefaces.primereact.internal.utild" "3.1.8"
+    "@bit/primefaces.primereact.tooltip" "3.1.8"
+    classnames "^2.2.6"
+    prop-types "^15.6.2"
+    react "^16.6.3"
+
+"@bit/primefaces.primereact.inputtext@3.1.8":
+  version "3.1.8"
+  resolved "https://node.bit.dev/primefaces.primereact.inputtext/-/primefaces.primereact.inputtext-3.1.8.tgz#6580405dc14e1f63e77bde328f75367e6fe39bbf"
+  integrity sha1-ZYBAXcFOH2Pne94yj3U2fm/jm78=
+  dependencies:
+    "@bit/primefaces.primereact.keyfilter" "3.1.8"
+    "@bit/primefaces.primereact.tooltip" "3.1.8"
+    "@bit/primefaces.primereact.utils.dom-handler" "3.1.8"
+    classnames "^2.2.6"
+    prop-types "^15.6.2"
+    react "^16.6.3"
+
+"@bit/primefaces.primereact.internal.utild@3.1.8":
+  version "3.1.8"
+  resolved "https://node.bit.dev/primefaces.primereact.internal.utild/-/primefaces.primereact.internal.utild-3.1.8.tgz#22cfabece052cb77732f346b7717599cfe9ac555"
+  integrity sha1-Is+r7OBSy3dzLzRrdxdZnP6axVU=
+
+"@bit/primefaces.primereact.keyfilter@3.1.8":
+  version "3.1.8"
+  resolved "https://node.bit.dev/primefaces.primereact.keyfilter/-/primefaces.primereact.keyfilter-3.1.8.tgz#d58b722533e65d5188c0b6d77ed4a270617b5e9e"
+  integrity sha1-1YtyJTPmXVGIwLbXftSicGF7Xp4=
+  dependencies:
+    "@bit/primefaces.primereact.utils.dom-handler" "3.1.8"
+
+"@bit/primefaces.primereact.tooltip@3.1.8":
+  version "3.1.8"
+  resolved "https://node.bit.dev/primefaces.primereact.tooltip/-/primefaces.primereact.tooltip-3.1.8.tgz#1dda8f20c375233b147779b785a32a313deba210"
+  integrity sha1-HdqPIMN1IzsUd3m3haMqMT3rohA=
+  dependencies:
+    "@bit/primefaces.primereact.utils.dom-handler" "3.1.8"
+
+"@bit/primefaces.primereact.utils.dom-handler@3.1.8":
+  version "3.1.8"
+  resolved "https://node.bit.dev/primefaces.primereact.utils.dom-handler/-/primefaces.primereact.utils.dom-handler-3.1.8.tgz#02a740dbe15d1f47aa412ade327e394d425a412f"
+  integrity sha1-AqdA2+FdH0eqQSreMn45TUJaQS8=
+
+"@bit/primefaces.primereact.utils.object-utils@3.1.8":
+  version "3.1.8"
+  resolved "https://node.bit.dev/primefaces.primereact.utils.object-utils/-/primefaces.primereact.utils.object-utils-3.1.8.tgz#4d9b4b0ef527372c207095e470f0df19247d5923"
+  integrity sha1-TZtLDvUnNywgcJXkcPDfGSR9WSM=
+
 "@iconify/icons-mdi@^1.0.46":
   version "1.0.47"
   resolved "https://registry.yarnpkg.com/@iconify/icons-mdi/-/icons-mdi-1.0.47.tgz#d3cf9cb386f0f75b750eeadc22538e899c61379c"
@@ -1633,6 +1700,11 @@ class-utils@^0.3.5:
     define-property "^0.2.5"
     isobject "^3.0.0"
     static-extend "^0.1.1"
+
+classnames@^2.2.6:
+  version "2.2.6"
+  resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.2.6.tgz#43935bffdd291f326dad0a205309b38d00f650ce"
+  integrity sha512-JR/iSQOSt+LQIWwrwEzJ9uk0xfN3mTVYMwt1Ir5mUcSN6pU+V4zQFFaJsclJbPuAUQH+yfWef6tm7l1quW3C8Q==
 
 clean-css@4.2.x:
   version "4.2.1"
@@ -2668,6 +2740,11 @@ follow-redirects@^1.0.0:
   integrity sha512-CRcPzsSIbXyVDl0QI01muNDu69S8trU4jArW9LpOt2WtC6LyUJetcIrmfHsRBx7/Jb6GHJUiuqyYxPooFfNt6A==
   dependencies:
     debug "^3.0.0"
+
+font-awesome@^4.7.0:
+  version "4.7.0"
+  resolved "https://registry.yarnpkg.com/font-awesome/-/font-awesome-4.7.0.tgz#8fa8cf0411a1a31afd07b06d2902bb9fc815a133"
+  integrity sha1-j6jPBBGhoxr9B7BtKQK7n8gVoTM=
 
 for-in@^1.0.2:
   version "1.0.2"
@@ -4886,7 +4963,7 @@ react-collapsible@^2.6.2:
   resolved "https://registry.yarnpkg.com/react-collapsible/-/react-collapsible-2.6.2.tgz#68de102b57de050c1b9c1405f4278f0048da3fda"
   integrity sha512-QLjwhhrAgrTdrVRUuuCWOHLt98bRXgx106Z1OErhk5mliQ9h1VH0LMLbmCkX8rdGTNxTsUvqR8y01ylkXCps0Q==
 
-react-dom@^16.12.0:
+react-dom@^16.12.0, react-dom@^16.6.3:
   version "16.12.0"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.12.0.tgz#0da4b714b8d13c2038c9396b54a92baea633fe11"
   integrity sha512-LMxFfAGrcS3kETtQaCkTKjMiifahaMySFDn71fZUNpPHZQEzmk/GiAeIT8JSOrHB23fnuCOMruL2a8NYlw+8Gw==
@@ -4988,7 +5065,7 @@ react-spring@^8.0.27:
     "@babel/runtime" "^7.3.1"
     prop-types "^15.5.8"
 
-react@^16.12.0, react@^16.3.2, react@^16.8.3:
+react@^16.12.0, react@^16.3.2, react@^16.6.3, react@^16.8.3:
   version "16.12.0"
   resolved "https://registry.yarnpkg.com/react/-/react-16.12.0.tgz#0c0a9c6a142429e3614834d5a778e18aa78a0b83"
   integrity sha512-fglqy3k5E+81pA8s+7K0/T3DBCF0ZDOher1elBFzF7O6arXJgzyu/FW+COxFvAWXJoJN9KIZbT2LXlukwphYTA==
