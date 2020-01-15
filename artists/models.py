@@ -4,7 +4,7 @@ User = get_user_model()
 
 
 class Artist(models.Model):
-    deezerId = models.CharField(max_length=64)
+    deezerId = models.IntegerField()
     name = models.CharField(max_length=64)
     owner = models.ForeignKey(
         User,

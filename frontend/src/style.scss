@@ -362,6 +362,7 @@ html, body {
       }
     }
   }
+}
 
   .arrow-1 {
     position: absolute;
@@ -435,9 +436,17 @@ html, body {
  
  .plus-sign {
   position: absolute;
-  width: 2.5%;
+  opacity: 0.8;
+  width: 1.5%;
   height: 2.5%;
-  top: 100px;
-  right: 216px;
-  }
-}
+  bottom: 160px;
+  left: 720px;
+  transition: 0.3s;
+ }
+
+ .plus-sign:hover {
+  width: 2.2%;
+  height: 3.5%;
+  left: 715px;
+  bottom: 155px;
+ }
