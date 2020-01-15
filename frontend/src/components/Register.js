@@ -1,5 +1,7 @@
 import React from 'react'
 import axios from 'axios'
+import { toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 import 'bulma'
 import SignUp from './RegisterForm'
@@ -13,14 +15,22 @@ class Register extends React.Component {
         password: '',
         password_confirmation: ''
       },
-      errors: {}
+      errors: {
+        username: '',
+        password: '',
+        password_confirmation: ''
+      }
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
   handleChange(e) {
     const data = { ...this.state.data, [e.target.name]: e.target.value }
-    const errors = { ...this.state.errors, [e.target.name]: '' }
+    const errors = {
+      username: '',
+      password: '',
+      password_confirmation: ''
+    }
 
     this.setState({ data, errors })
   }
@@ -28,14 +38,19 @@ class Register extends React.Component {
     e.preventDefault()
     axios.post('/api/register', this.state.data, { headers: { 'Authorization': '' } })
       .then(() => this.props.history.push('/login'))
-      .catch(err => this.setState({ errors: err.response.data.errors }))
+      .catch(err => this.setState({ errors: err.response.data }))
+    // .catch(err => console.log(err.response.data))
   }
   render() {
-    console.log(this.state.data)
-    return <SignUp  
+    console.log(this.state.errors)
+    { this.state.errors.password_confirmation ? toast('Passwords do not match') : null }
+    { this.state.errors.password ? toast('Please submit a password which isn\'t too common and includes at least 8 characters and one letter') : null }
+    { this.state.errors.username ? toast('This username has already been taken') : null }
+    return <SignUp
       handleChange={this.handleChange}
       handleSubmit={this.handleSubmit}
     />
+
     //   return <section className="section">
     //     <div className="container">
     //       <div className="title">Register</div>

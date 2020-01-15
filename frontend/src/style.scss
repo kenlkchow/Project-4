@@ -92,7 +92,7 @@ html, body {
           #singleArtist {
             border-radius: 1em 1em 0em 0em;
             height: 100%;
-            background-color: #FDFDD2;
+            background-color: rgba(253, 253, 210, 0.6);
             display: flex;
             flex-direction: column;
             #head {
@@ -147,6 +147,10 @@ html, body {
             #image-wrapper {
               margin: 0 auto;
               display: flex;
+              opacity: 1;
+              box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.7), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
+              // border-style: double;
+              border-color:#606060;
               justify-content: center;
               transition: all .2s ease-in-out;
               -webkit-animation: fadein 1s;
@@ -385,7 +389,7 @@ html, body {
 }
 
 .suggestions-container{
-  background: $node-green;
+  background: $node-red;
   border-radius: 0.5em;
   border-color: lightgray;
   border-style: dashed;
@@ -591,7 +595,6 @@ html, body {
   height: 100%;
   width: 100%
 }
-
 @keyframes fadein {
   from { opacity: 0; }
   to   { opacity: 1; }
@@ -599,4 +602,8 @@ html, body {
 @-webkit-keyframes fadein {
 from { opacity: 0; }
 to   { opacity: 1; }
+}
+
+.Toastify__toast-body { 
+  font-family: 'Cabin Sketch', cursive; 
 }

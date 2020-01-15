@@ -8,6 +8,7 @@ import downArrow from './images/toppng.com-white-drop-down-arrow-423x265.png'
 import plus from './images/iconfinder_favourite512x512_197598.png'
 import Auth from '../lib/authMethods'
 import { toast } from 'react-toastify'
+import FadeIn from 'react-fade-in'
 
 const Nodes = (props) => {
 
@@ -31,20 +32,25 @@ const Nodes = (props) => {
   })
 
   const addToFavourites = useCallback(() => {
-    alert(`${mainNode.name} added to favourites`)
-    axios({
-      method: 'post',
-      url: '/api/artists',
-      data: {
-        deezerId: mainNode.id,
-        name: mainNode.name
-      },
-      headers: { Authorization: `Bearer ${Auth.getToken()}` }
-    })
-      .then(res => {
-        console.log(res)
+    if (Auth.isAuthorized()) {
+      toast(`${mainNode.name} added to favourites`)
+      axios({
+        method: 'post',
+        url: '/api/artists',
+        data: {
+          deezerId: mainNode.id,
+          name: mainNode.name
+        },
+        headers: { Authorization: `Bearer ${Auth.getToken()}` }
       })
-      .catch(err => console.log(err))
+        .then(res => {
+          console.log(res)
+        })
+        .catch(err => console.log(err))
+    } else {
+      toast('You need to be logged in to do this')
+    }
+
   }, [{ ...mainNode }])
 
   { console.log(mainNode.id, mainNode.name) }
@@ -172,7 +178,7 @@ const Nodes = (props) => {
         <div >
           <div className="second-node-container fade-in">
             {secondaryNodes.map((artist, i) => {
-              return <div key={i} id={artist.id} className="second-node" onClick={handleClick}> {artist.name}</div>
+              return <FadeIn key={i}> <div key={i} id={artist.id} className="second-node" onClick={handleClick}> {artist.name}</div> </FadeIn>
             })}
             <img className="down-arrow2" src={downArrow} onClick={refreshSuggestionsUp} />
             <img className="down-arrow" src={downArrow} onClick={refreshSuggestions} />

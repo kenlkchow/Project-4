@@ -4820,14 +4820,11 @@ junk@^3.1.0:
   resolved "https://registry.yarnpkg.com/junk/-/junk-3.1.0.tgz#31499098d902b7e98c5d9b9c80f43457a88abfa1"
   integrity sha512-pBxcB3LFc8QVgdggvZWyeys+hnrNWg4OcZIU/1X59k5jQdLBlCsYGRQaz234SqoRLTCgMH00fY0xRJH+F9METQ==
 
-<<<<<<< HEAD
 keymaster@^1.6.2:
   version "1.6.2"
   resolved "https://registry.yarnpkg.com/keymaster/-/keymaster-1.6.2.tgz#e1ae54d0ea9488f9f60b66b668f02e9a1946c6eb"
   integrity sha1-4a5U0OqUiPn2C2a2aPAumhlGxus=
 
-=======
->>>>>>> development
 keyv@3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/keyv/-/keyv-3.0.0.tgz#44923ba39e68b12a7cec7df6c3268c031f2ef373"
@@ -6331,6 +6328,11 @@ react-dom@^16.12.0, react-dom@^16.6.3:
     object-assign "^4.1.1"
     prop-types "^15.6.2"
     scheduler "^0.18.0"
+
+react-fade-in@^0.1.7:
+  version "0.1.7"
+  resolved "https://registry.yarnpkg.com/react-fade-in/-/react-fade-in-0.1.7.tgz#b68686b85071375f4f9cbee85ad96ffb6adf6bce"
+  integrity sha512-g8U5RxvwN4hDKIR0INQS3ZwR56fBmFS/cXw5JngDVpGobr58tzX8aA+crX+zUpiisMWiY7kCyUu0750HNXb+tg==
 
 react-h5-audio-player@^2.2.1:
   version "2.2.1"

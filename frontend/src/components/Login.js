@@ -2,6 +2,9 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import Auth from '../lib/authMethods'
 import SignIn from './LoginForm'
+import { toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+
 
 const initialData = {
   username: '',
@@ -34,7 +37,7 @@ const Login = (props) => {
   }
 
   console.log(data)
-
+  {errors ? toast('Username or password incorrect') : null }
   return <SignIn
     handleChange={handleChange}
     handleSubmit={handleSubmit}
