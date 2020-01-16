@@ -21,14 +21,14 @@ const GigModal = ({ toggleModal, gig, setModal }) => {
         </p>
       </header>
       <section className="modal-card-body">
-        <p className="">Description</p>
-        <p>{gig.description}</p>
-        <p className="">Ticket price approx.</p>
-        <p>{gig.entryprice}</p>
-        <p className="">Start time</p>
+        <p className="subtitle">Description:</p>
+        {gig.description ? <p>{gig.description}</p> : <p>No description available</p>}
+        <p className="subtitle">Ticket price approx.:</p>
+        {gig.entryprice ? <p>{`£${(gig.entryprice).replace(/[^\d.-]/g, '')}`}</p> : <p>No price information available</p>}
+        <p className="subtitle">Start time:</p>
         <p>{gig.openingtimes.doorsopen}</p>
-        <p className="">Venue contact information</p>
-        <p>{gig.venue.phone}</p>
+        <p className="subtitle">Venue contact information:</p>
+        {gig.venue.phone ? <p>{gig.venue.phone}</p> : <p>No contact information available</p>}
       </section>
     </div>
     <button className="modal-close is-large" aria-label="close" onClick={toggleModal}></button>

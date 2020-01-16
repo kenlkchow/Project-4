@@ -360,9 +360,14 @@ html, body {
   border: 3px solid white;
 }
 
-#modal-body {
-  background-color: #303030;
-  border-bottom: 2px solid #FDFDD2;
+.modal-card-body {
+  p {
+    font-weight: lighter;
+  }
+  .subtitle {
+    margin-bottom: 2px;
+    font-weight: bold;
+  }
 }
 
 #search-section{

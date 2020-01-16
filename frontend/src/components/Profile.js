@@ -141,7 +141,12 @@ const Profile = () => {
         <div className="column" id="artists">
           <div className="title has-text-centered has-text-white">Artists</div>
           {artists.map((artist, i) => {
-            return <div key={i} title={artist.name} onClick={handleClick} className="artist" id={artist.id}>{artist.name}</div>
+            return <div key={i} 
+              title={artist.name} 
+              onClick={handleClick} 
+              className="artist" 
+              id={artist.id}
+            >{artist.name}</div>
           })}
         </div>
         {/* SINGLE ARTIST COLUMN */}
@@ -187,8 +192,10 @@ const Profile = () => {
               {city[cities[i]].map((gig, j) => {
                 return <div key={j}>
                   <p onClick={() => handleGigClick(gig)} className="has-text-white">
-                    {gig.venue.name} - {moment(gig.date).format('MMM Do YYYY')} 
-                    {userPosition.latitude ? ` - ${distance(userPosition.latitude, userPosition.longitude, gig.venue.latitude, gig.venue.longitude)} miles` 
+                    {gig.venue.name} - 
+                    {moment(gig.date).format('MMM Do YYYY')} 
+                    {userPosition.latitude ? 
+                      ` - ${distance(userPosition.latitude, userPosition.longitude, gig.venue.latitude, gig.venue.longitude)} miles` 
                       : 
                       null
                     }
