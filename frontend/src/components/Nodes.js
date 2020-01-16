@@ -33,7 +33,7 @@ const Nodes = (props) => {
 
   const addToFavourites = useCallback(() => {
     if (Auth.isAuthorized()) {
-      toast(`${mainNode.name} added to favourites`)
+      toast(`${mainNode.name} added to favourites!`)
       axios({
         method: 'post',
         url: '/api/artists',
