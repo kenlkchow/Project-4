@@ -359,13 +359,15 @@ html, body {
   padding-left: 175px;
   padding-right: 175px;
   padding-top: 100px;
+  
 }
 
 #searchbar{
   border-width: 1px;
-  border-style: dashed;
+  // border-style: dashed;
   border-color: lightgray;
-  background: $node-brown;
+  background: rgba(253,253, 210, 0.5);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.7), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
   border-radius: 0.5em;
   color: white;
 }
@@ -379,10 +381,10 @@ html, body {
 }
 
 .suggestions-container{
-  background: $node-green;
-  border-radius: 0.5em;
   border-color: lightgray;
-  border-style: dashed;
+  background: rgba(253,253, 210, 0.5);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.7), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
+  border-radius: 0.5em;
   border-width: 1px;
   height: 32vh;
 }
