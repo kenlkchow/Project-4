@@ -24,6 +24,7 @@
     "bulma": "^0.8.0",
     "chroma-js": "^2.1.0",
     "css-loader": "^3.4.1",
+    "dotenv": "^8.2.0",
     "dotenv-webpack": "^1.7.0",
     "file-loader": "^5.0.2",
     "font-awesome": "^4.7.0",
